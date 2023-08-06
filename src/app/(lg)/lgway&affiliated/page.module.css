@@ -1,0 +1,94 @@
+.container {
+   width: 100%;
+   margin-top: 10vh;
+   display: flex;
+   flex-direction: column;
+   justify-content:  center;
+   align-items: center;
+   gap: 7vh;
+}
+
+.lgwayContainer {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content:  center;
+   align-items: center;
+   background-color: var(--cnt-bg-color);
+   padding: 5vh 0;
+   gap: 5vh;
+}
+
+.title {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.img {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 6px;
+}
+
+.lgwayDesc_1 {
+   display: flex;
+   flex-direction: column;
+   background-color: white;
+   padding: 3%;
+   gap: 6px;
+}
+
+.lgwayDesc_2 {
+   display: flex;
+   align-items: center;
+   gap: 5vh;
+}
+
+.desc_3 {
+   width: 150px;
+   text-align: center;
+}
+
+.desc_4 {
+   width: 200px;
+}
+
+.affilatedContainer {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content:  center;
+   background-color: var(--cnt-bg-color);
+   padding-top: 5vh;
+   gap: 5vh;
+}
+
+.fieldContainer {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   padding: 4%;
+   gap: 7vh;
+}
+
+.fieldTitle {
+   margin-bottom: 2vh;
+}
+
+.fieldTitle {
+   display: flex;
+   flex-direction: row;
+   gap: 20px;
+}
+
+.companyContainer {
+   display: flex;
+   flex-direction: column;
+   gap: 4vh;
+}
+
+.company:hover {
+   color: var(--LG-simbolmark);
+}

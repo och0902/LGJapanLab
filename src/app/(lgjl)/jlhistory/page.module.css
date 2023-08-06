@@ -1,0 +1,54 @@
+.container {
+   width: 90%;
+   margin: auto;
+   display: flex;
+   margin-top: 10vh;
+   flex-direction: column;
+   align-items: center;
+   gap: 20px;
+}
+
+.affiiiated_1 {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   text-align: center;
+   gap: 6px;
+}
+
+.affiliated_2 {
+   padding: 5px;
+   background-color: var(--LG-logotype);
+   color: white;
+}
+
+.company_1 {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+}
+
+.company_2 {
+   flex: 1;
+   padding: 20px 10px;
+   background-color: var(--cnt-bg-color);}
+
+.company_3 {
+   margin-bottom: 5px;
+   padding-bottom: 10px;
+   color: var(--LG-simbolmark);
+   font-weight: bolder;
+}
+
+.jlab_1 {
+   width: 100%;
+   padding: 10px;
+   text-align: center;
+   background-color: var(--cnt-bg-color);
+}
+
+.jlab_2 {
+   color: var(--LG-simbolmark);
+   font-weight: bolder;
+}

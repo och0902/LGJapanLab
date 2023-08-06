@@ -1,0 +1,52 @@
+.container {
+   margin-top: 10vh;
+   display: flex;
+   flex-direction: column;
+   gap: 10vh;
+}
+
+.slogan {
+   margin: 0 auto;
+   /* margin-top: 10vh; */
+}
+
+.histories {
+   margin: 0;
+   padding: 3% 4%;  
+   /* margin-bottom: 30px; */
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   background-color: var(--cnt-bg-color);
+}
+
+.histories:nth-child(2n+1) {
+   flex-direction: row-reverse;
+   background-color: var(--bg-color);
+}
+
+.history {
+   flex: 1;
+}
+
+.title {
+   margin-bottom: 20px;
+}
+
+.detail {
+   display: flex;
+   flex-direction: row;
+   gap: 5px;
+}
+
+.date {
+   letter-spacing: 3px;
+   margin-right: 10px;
+}
+
+.img {
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

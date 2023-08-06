@@ -1,0 +1,25 @@
+.container {
+   width: 100%;
+   margin-top: 10vh;
+   display: flex;
+   flex-direction: column;
+   justify-content:  space-between;
+   align-items: center;
+   gap: 4vh;
+}
+
+.site_1 {
+   width: 90%;
+   display: flex;
+   align-self: center;
+   padding: 3vh;
+   background-color: var(--cnt-bg-color);
+}
+
+.site_2 {
+   margin: auto;
+}
+
+.link:hover {
+   color: var(--LG-simbolmark);
+}

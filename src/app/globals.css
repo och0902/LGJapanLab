@@ -1,0 +1,43 @@
+/* @font-face {
+   font-family: "LG Smart Font";
+   src: url("fonts/lgsmartfont.woff2") format("woff2");
+} */
+
+:root {
+   --LG-simbolmark: #A50034;
+   --LG-logotype: #6B6B6B;
+   --bg-color-light: #FFF;
+   --cnt-bg-color: #eee;
+   --txt-color-light: #000;
+   --bg-color-dark: #000;;
+   --txt-color-dark: #FFF;
+}
+
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+   /* border: 1px solid red; */
+}
+
+html,
+body {
+   font-family: "LG Smart Font", sans-serif;
+   max-width: 100vw;
+   overflow-x: hidden;
+}
+
+a {
+   color: inherit;
+   text-decoration: none;
+}
+
+.container {
+   max-width: 1920px;
+   min-height: 100vh;
+   margin: auto; 
+   padding: 1.5% 2%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
