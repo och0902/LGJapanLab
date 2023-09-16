@@ -1,19 +1,24 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Divider, Input, Paper, TextField, Typography } from '@mui/material';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Box, Button, Divider, Paper, TextField, Typography } from '@mui/material';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import toolbarOptions from '@/utils/toolbarOptions';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import CreateNewFolderOutlinedIcon from '@mui/icons-material/CreateNewFolderOutlined';
-import { redirect, useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 const Create = () => {
 
    const session = useSession();
+   const router = useRouter();
 
    const [ title, setTitle ] = useState('');
-   const [ author, setAuthor ] = useState('admin');
+   const [ author, setAuthor ] = useState('');
    const [ bulletin, setBulletin ] = useState('');
 
    useEffect(() => {
@@ -22,8 +27,6 @@ const Create = () => {
       };
    },[session]);
    
-   const router = useRouter();
-
    const hadleSubmit = (e) => {
       e.preventDefault();
    
@@ -31,7 +34,6 @@ const Create = () => {
          alert('title and bulettin are required.');
          return;
       };
-
       try {
          const url = '/api/bulletins';
          fetch(url, {
@@ -41,58 +43,68 @@ const Create = () => {
          })
          .then ((response) => {
             if( !response.ok ) {
-               throw new Error('failed to create a article');
+               toast.error('failed to create a bulletin');
             };
          })
-         .catch (error => { throw new Error(error); });
+         .catch (error => { toast.error(error) });
       } catch (error) {
-         console.log(error);
+         toast.error('something went wrong ...');
       };
-      // redirect('/bulletins');
       router.push('/bulletins');
       router.refresh();
 
    };
 
    return (
-      <Paper sx={{ my: '10vh', display: 'flex', flexDirection: 'column', gap: '15px', }}>
-         <form onSubmit={hadleSubmit}>
-            <Box>
-               <Box variant='body1' sx={{ p: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+      <Box sx={{ width: '100%' }}> 
+         <Paper>
+            <form onSubmit={hadleSubmit}>
+               <Box variant='body1' sx={{ p: '10px' }}>
                   <TextField
-                     placeholder='Title'
+                     type= 'text'
+                     name= 'title'
+                     label= 'Title'
                      onChange={(e) => setTitle(e.target.value)}
                      value={title}
+                     size= 'small'
                      sx={{ width: '100%', textDecoration: 'none', }}   
                   />
                </Box>
                <Divider />
-               <Box variant='body1' sx={{ p: '15px', }}>
-                  <TextField
+               <Box sx={{ p: '10px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {/* <TextField
+                     type= 'text'
+                     name= 'contents'
+                     label= 'Contents'
                      placeholder='Contents'
                      multiline
-                     rows={20}
+                     rows={15}
                      onChange={(e) => setBulletin(e.target.value)}
                      value={bulletin}
                      sx={{ width: '100%', textDecoration: 'none' }}   
-                  />                     
+                  />                      */}
+                  <ReactQuill
+                     value={bulletin}
+                     style={{ width: '100%', minHeight: '40vh' }}
+                     onChange={ setBulletin }
+                     modules={toolbarOptions}
+                  />
+                  <Box sx={{ p: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+                     <Link href='/bulletins'>
+                        <Button sx={{ ml: '20px', px: '10px', width: 'max-contnt', '&:hover': { color: 'var(--color-LGred)', } }}>
+                           <Typography><ArrowBackOutlinedIcon sx={{ mb: -0.8 }} /> Bulletin</Typography>
+                        </Button>
+                     </Link>
+                     <Box sx={{ display: 'flex', alignItems: 'center', px: '10px', mr: '20px', }}>
+                        <Button type='submit' sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--color-LGred)', } }}>
+                           <Typography><CreateNewFolderOutlinedIcon sx={{ mb: -0.8 }}/> Create</Typography>
+                        </Button>
+                     </Box>
+                  </Box>
                </Box>
-            </Box>
-            <Divider />
-            <Box sx={{ p: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-               <Link href='/bulletins'>
-                  <Button sx={{ ml: '20px', px: '10px', width: 'max-contnt', '&:hover': { color: 'var(--LG-simbolmark)', } }}>
-                     <Typography><ArrowBackOutlinedIcon sx={{ mb: -0.8 }} /> Bulletin</Typography>
-                  </Button>
-               </Link>
-               <Box sx={{ display: 'flex', alignItems: 'center', px: '10px', mr: '20px', }}>
-                  <Button type='submit' sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--LG-simbolmark)', } }}>
-                     <Typography><CreateNewFolderOutlinedIcon sx={{ mb: -0.8 }}/> Create</Typography>
-                  </Button>
-               </Box>
-            </Box>
-         </form>
-      </Paper>
+            </form>
+         </Paper>
+      </Box>
    );
 };
 

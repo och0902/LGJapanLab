@@ -2,12 +2,30 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Divider, Link, Paper, TextField, Typography } from '@mui/material';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import toolbarOptions from '@/utils/toolbarOptions';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 
 const Update = ({ params }) => {
 
+   const { id } = params;
+
+   useEffect(() => {
+      const url = `/api/bulletins/${id}`;
+      fetch(url, { method: 'GET', cache: 'no-store' })
+         .then (response => response.json())
+         .then (data => { 
+            const { bulletin } = data;
+            setNewTitle(bulletin.title);
+            setNewAuthor(bulletin.author);
+            setNewBulletin(bulletin.bulletin);
+         })
+         .catch (error => { throw new Error(error); });
+   },[id]);
+   
    const router = useRouter();
 
    const [ newTitle, setNewTitle ] = useState('');
@@ -30,70 +48,63 @@ const Update = ({ params }) => {
             }; 
          })
          .catch (error => { throw new Error(error); });
-   
       } catch (error) {
          console.log(error);
       };
-      // redirect('/bulletins');
       router.push('/bulletins');
       router.refresh();
    };
 
-   const { id } = params;
-
-   useEffect(() => {
-      const url = `/api/bulletins/${id}`;
-      fetch(url, { method: 'GET', cache: 'no-store' })
-         .then (response => response.json())
-         .then (data => { 
-            const { bulletin } = data;
-      
-            setNewTitle(bulletin.title);
-            setNewAuthor(bulletin.author);
-            setNewBulletin(bulletin.bulletin);
-         })
-         .catch (error => { throw new Error(error); });
-   },[id]);
-
    return (
-      <Paper sx={{ my: '10vh', display: 'flex', flexDirection: 'column', gap: '15px', }}>
-         <form onSubmit={handleSubmit}>
-            <Box>
-               <Box variant='body1' sx={{ p: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+      <Box sx={{ width: '100%', my: '5vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '5vh' }} > 
+         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+            <form onSubmit={handleSubmit}>
+               <Box sx={{ p: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
                   <TextField
-                     placeholder='Title'
+                     type= 'text'
+                     name= 'title'
+                     label= 'Title'
                      onChange={(e) => setNewTitle(e.target.value)}
                      value={newTitle}
+                     size= 'small'
                      sx={{ width: '100%', textDecoration: 'none', }}   
                   />
                </Box>
                <Divider />
-               <Box variant='body1' sx={{ p: '15px', }}>
-                  <TextField
-                     placeholder='Contents'
+               <Box sx={{ p: '10px', }}>
+                  {/* <TextField
+                     type= 'text'
+                     name= 'contents'
+                     label= 'Contents'
                      multiline
-                     rows={20}
+                     rows={15}
                      onChange={(e) => setNewBulletin(e.target.value)}
                      value={newBulletin} 
-                     sx={{ width: '100%', textDecoration: 'none' }}   
-                  />                     
+                     sx={{ width: '100%', textDecoration: 'none', }}   
+                  />                      */}
+                  <ReactQuill 
+                     value={newBulletin} 
+                     style={{ width: '100%', minHeight: '40vh', }}
+                     onChange={ setNewBulletin }
+                     modules={toolbarOptions}
+                  />
                </Box>
-            </Box>
-            <Divider />
-            <Box sx={{ ml: '20px', p: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-               <Link href='/bulletins'>
-                  <Button sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--LG-simbolmark)', } }}>
-                     <Typography><ArrowBackOutlinedIcon sx={{ mb: -0.8 }} /> Bulletin</Typography>
-                  </Button>
-               </Link>
-               <Box sx={{ display: 'flex', alignItems: 'center', pr: '10px', mr: '20px', }}>
-                  <Button type='submit' sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--LG-simbolmark)', } }}>
-                     <Typography><UpgradeIcon sx={{ mb: -0.8 }}/> Update</Typography>
-                  </Button>
+               <Divider />
+               <Box sx={{ ml: '20px', p: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+                  <Link href='/bulletins'>
+                     <Button sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--color-LGred)', } }}>
+                        <Typography><ArrowBackOutlinedIcon sx={{ mb: -0.8 }} /> Bulletin</Typography>
+                     </Button>
+                  </Link>
+                  <Box sx={{ display: 'flex', alignItems: 'center', pr: '10px', mr: '20px', }}>
+                     <Button type='submit' sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--color-LGred)', } }}>
+                        <Typography><UpgradeIcon sx={{ mb: -0.8 }}/> Update</Typography>
+                     </Button>
+                  </Box>
                </Box>
-            </Box>
-      </form>
-   </Paper>
+            </form>
+         </Paper>
+      </Box>
    );
 };
 

@@ -1,0 +1,43 @@
+.affilatedContainer {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content:  center;
+   /* background-color: var(--color-bg-content); */
+   gap: var(--gap-basic);
+}
+
+.title {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.fieldContainer {
+   width: 100%;
+   /* padding: 0 var(--padding-basic); */
+   display: flex;
+   flex-direction: column;
+   gap: var(--gap-basic);
+}
+
+.companyContainer {
+   display: flex;
+   flex-direction: column;
+   gap: var(--gap-basic);
+}
+
+.company:hover {
+   color: var(--color-LGred);
+   text-decoration: none;
+}
+
+.thumbnail {
+   object-fit: contain;
+   position: relative;
+   transition: all 0.3s ease;
+}
+
+.thumbnail:hover {
+   transform: scale(1.05);
+}

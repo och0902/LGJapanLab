@@ -10,21 +10,22 @@ const Delete = ({ params }) => {
    const router = useRouter();
 
    try {
-      const url = `/api/bulletins?id=${id}`;
+      const url = `/api/bulletins/${id}`;
+      // const url = `/api/bulletins?id=${id}`;
       fetch(url, { method: 'DELETE', })
          .then ((response) => {
             if( !response.ok ) {
                throw new Error('failed to delete an article');
             };
-            // router.push('/bulletins');
-            // router.refresh();
+            router.push('/bulletins');
+            router.refresh();
          });
    } catch (error) {
       console.log(error);
+      router.push('/bulletins');
+      router.refresh();
    };
-   redirect('/bulletins');
-   // router.push('/bulletins');
-   // router.refresh();
+
 };
 
 export default Delete;
