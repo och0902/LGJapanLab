@@ -47,15 +47,15 @@ const LGWayAffiliated = () => {
                <Typography variant='h5'>We create value for our customers</Typography>
             </div>
             <div className={styles.fieldContainer}>
-               {affilated.map((field, idx) => (
-                  <div key={idx} className={styles.field}>
+               {affilated.map((field, i) => (
+                  <div key={i} className={styles.field}>
                      <div className={styles.fieldTitle}>
                         {field.icon}
                         <Typography variant='h5'>{field.field}</Typography>
                      </div>
                      <div className={styles.companyContainer}>
-                        {field.company.map((company, idx) => (
-                           <Link key={idx} href={company.href} className={styles.company}>
+                        {field.company.map((company, j) => (
+                           <Link key={j} href={company.href} className={styles.company}>
                               <Typography variant='h6' sx={{ mb: 1 }}>
                                  <KeyboardArrowRightOutlinedIcon sx={{ mb: -0.7 }} /> {company.name}
                               </Typography>

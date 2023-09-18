@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Divider, Link, Paper, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import TextEditor from '@/components/TextEditor/TextEditor';
 import toolbarOptions from '@/utils/toolbarOptions';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
@@ -72,17 +71,7 @@ const Update = ({ params }) => {
                </Box>
                <Divider />
                <Box sx={{ p: '10px', }}>
-                  {/* <TextField
-                     type= 'text'
-                     name= 'contents'
-                     label= 'Contents'
-                     multiline
-                     rows={15}
-                     onChange={(e) => setNewBulletin(e.target.value)}
-                     value={newBulletin} 
-                     sx={{ width: '100%', textDecoration: 'none', }}   
-                  />                      */}
-                  <ReactQuill 
+                  <TextEditor 
                      value={newBulletin} 
                      style={{ width: '100%', minHeight: '40vh', }}
                      onChange={ setNewBulletin }

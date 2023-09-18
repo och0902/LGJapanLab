@@ -5,11 +5,10 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Box, Button, Divider, Paper, TextField, Typography } from '@mui/material';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import toolbarOptions from '@/utils/toolbarOptions';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import CreateNewFolderOutlinedIcon from '@mui/icons-material/CreateNewFolderOutlined';
+import TextEditor from '@/components/TextEditor/TextEditor';
+import toolbarOptions from '@/utils/toolbarOptions';
 import { toast } from 'react-hot-toast';
 
 const Create = () => {
@@ -26,7 +25,7 @@ const Create = () => {
          setAuthor(session.data.user.name);
       };
    },[session]);
-   
+
    const hadleSubmit = (e) => {
       e.preventDefault();
    
@@ -72,18 +71,7 @@ const Create = () => {
                </Box>
                <Divider />
                <Box sx={{ p: '10px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {/* <TextField
-                     type= 'text'
-                     name= 'contents'
-                     label= 'Contents'
-                     placeholder='Contents'
-                     multiline
-                     rows={15}
-                     onChange={(e) => setBulletin(e.target.value)}
-                     value={bulletin}
-                     sx={{ width: '100%', textDecoration: 'none' }}   
-                  />                      */}
-                  <ReactQuill
+                  <TextEditor          
                      value={bulletin}
                      style={{ width: '100%', minHeight: '40vh' }}
                      onChange={ setBulletin }

@@ -4,8 +4,7 @@ import { Box } from '@mui/material';
 
 const Carrier = () => {
    return (
-
-		<Box className='pageContainer'>
+      <Box className='pageContainer'>
          Carrier
       </Box>
    );

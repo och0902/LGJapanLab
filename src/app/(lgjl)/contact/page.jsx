@@ -5,7 +5,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const JLLocation = () => {
+const JLContact = () => {
    
    return (
 		<Box className='pageContainer'>
@@ -56,4 +56,4 @@ const JLLocation = () => {
    );
 };
 
-export default JLLocation;
+export default JLContact;

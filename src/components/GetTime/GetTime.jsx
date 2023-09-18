@@ -3,29 +3,29 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Box, Typography, } from '@mui/material';
 
-const GetTime = () => {
+const getDate = () => {
 
    const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+   
+   const date = new Date();
 
-   const getDate = () => {
+   const year = date.getFullYear( ); 
+   const month = date.getMonth() < 9 ? '0'+(date.getMonth()+1) : date.getMonth()+1;
+   const day = date.getDate() < 10 ? '0'+date.getDate() : date.getDate();
+   const dayOfWeek = week[date.getDay()];
+   const ampm = date.getHours() < 13 ? 'AM' : 'PM';
+   const hours = date.getHours() < 13 ? 
+      ( date.getHours() < 10 ? '0'+date.getHours() : date.getHours() ) 
+      : 
+      ( date.getHours() < 10 ?  '0'+(Number(date.getHours())-12) :  Number(date.getHours())-12 );
+   const minutes = date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes();
+   const seconds = date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds();
 
-      const date = new Date();
+   return { year, month, day, dayOfWeek, ampm, hours, minutes, seconds };
 
-      const year = date.getFullYear( ); 
-      const month = date.getMonth() < 9 ? '0'+(date.getMonth()+1) : date.getMonth()+1;
-      const day = date.getDate() < 10 ? '0'+date.getDate() : date.getDate();
-      const dayOfWeek = week[date.getDay()];
-      const ampm = date.getHours() < 13 ? 'AM' : 'PM';
-      const hours = date.getHours() < 13 ? 
-         ( date.getHours() < 10 ? '0'+date.getHours() : date.getHours() ) 
-         : 
-         ( date.getHours() < 10 ?  '0'+(Number(date.getHours())-12) :  Number(date.getHours())-12 );
-      const minutes = date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes();
-      const seconds = date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds();
+};
 
-      return { year, month, day, dayOfWeek, ampm, hours, minutes, seconds };
-
-   };
+const GetTime = () => {
 
    const [ time, setTime ] = useState( getDate() );
 

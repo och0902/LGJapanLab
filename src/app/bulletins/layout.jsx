@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, } from '@mui/material';
 import { redirect } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import Loading from '@/components/Loading/loading';
+import Loading from '@/components/Loading/Loading';
 import styles from './page.module.css';
 
 export default function BulletinsLayout({ children }) {

@@ -16,8 +16,8 @@ const LGHistory = () => {
       <Box className='pageContainer'>
          <Typography variant='h5' className={styles.slogan}>LG, A tale of challenge and ceaseless innovation</Typography>
          <Grid container sx={{ w: '100%', mb: 'var(--margin-basic)', justifyContent: 'center' }}>
-            { videoclips.map((videoclip, idx) => (
-               <Grid key={idx} item xs={12} sm={4} md={4} sx={{ p: '3px' }}>
+            { videoclips.map((videoclip, i) => (
+               <Grid key={i} item xs={12} sm={4} md={4} sx={{ p: '3px' }}>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                      <Link href={videoclip.url} 
                         style={{ width: '100%', aspectRatio: '16/9', position: 'relative', cursor: 'pointer', overflow: 'hidden' }} >
@@ -30,16 +30,16 @@ const LGHistory = () => {
             ))}
          </Grid>
 
-         {histories.map((genHistory, idx1) => (
-            <Grid container key={idx1} sx={{ alignItems: 'center' }} className={styles.histories} >
+         {histories.map((genHistory, i) => (
+            <Grid container key={i} sx={{ alignItems: 'center' }} className={styles.histories} >
                <Grid item xs={12} md={7} sx={{ pr: '30px'}}>
                   <Box className={styles.title}>
                      <Typography variant='h5' sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} >
                         {genHistory.icon} {genHistory.achievement}</Typography>
                      <Typography variant='h6'>{genHistory.chairman}</Typography>
                   </Box>
-                  {genHistory.events.map((history, idx2) => (
-                     <Box key={idx2}>
+                  {genHistory.events.map((history, j) => (
+                     <Box key={j}>
                         <Box className={styles.detail}>
                            <Typography variant='body2' className={styles.date}>{history.date}</Typography>
                            <Typography variant='body2'>{history.history}</Typography>
@@ -49,8 +49,8 @@ const LGHistory = () => {
                </Grid>
                <Grid item xs={12} md={5} sx={{ pr: '30px'}}>
                   <Grid container sx={{ alignItems: 'center' }}>
-                     {genHistory.imgs.map((img, idx) => (
-                        <Grid item key={idx} xs={4} sm={2} md={6} lg={4} sx={{ p: '1px' }}>
+                     {genHistory.imgs.map((img, j) => (
+                        <Grid item key={j} xs={4} sm={2} md={6} lg={4} sx={{ p: '1px' }}>
                            <Box sx={{ aspectRatio: '1/1', position: 'relative' }}>
                               <Image src={img.url} fill style={{ objectFit: 'contain' }} alt={img.name} loading='lazy' />
                               <ImageListItemBar title={img.name} />
