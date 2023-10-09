@@ -1,43 +1,23 @@
-.affilatedContainer {
-   width: 100%;
+.companyBox {
+   width: 150px;
+   height: 120px;
    display: flex;
-   flex-direction: column;
-   justify-content:  center;
-   /* background-color: var(--color-bg-content); */
-   gap: var(--gap-basic);
-}
-
-.title {
-   display: flex;
-   flex-direction: column;
+   justify-content: space-between;
    align-items: center;
+   padding: 0 10px;
+   border: 1px solid var(--color-LGgray-light);
+   border-radius: 5px;
+   box-shadow: 2px 2px 5px var(--color-LGgray);
 }
 
-.fieldContainer {
-   width: 100%;
-   /* padding: 0 var(--padding-basic); */
-   display: flex;
-   flex-direction: column;
-   gap: var(--gap-basic);
-}
-
-.companyContainer {
-   display: flex;
-   flex-direction: column;
-   gap: var(--gap-basic);
-}
-
-.company:hover {
-   color: var(--color-LGred);
+.companyBox:hover {
    text-decoration: none;
-}
+   color: var(--color-LGred);
+   border: 1px solid var(--color-LGred);
+} 
 
-.thumbnail {
-   object-fit: contain;
-   position: relative;
-   transition: all 0.3s ease;
-}
-
-.thumbnail:hover {
-   transform: scale(1.05);
+@media screen and (max-width: 600px) {
+   .companyBox {
+      width: 130px;
+   }
 }

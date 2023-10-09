@@ -9,7 +9,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
    title: 'LG Japan Lab Inc.',
-   description: 'LG의 일본지역 연구개발 거점 LG Japan Lab',
+   description: 'LG\'s Research and Development (R&D) Base in Japan, LG Japan Lab',
+   keyword: 'LG, Life\'s Good, LG Japan Lab, Research, Development, R&amp;D, Technology, Researcher, Engineer, Electonic, Display, Innotek, Chem, Energy Solution, Hidrogen' 
 };
 
 const RootLayout = ({ children }) => {

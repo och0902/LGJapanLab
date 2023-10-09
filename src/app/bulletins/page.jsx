@@ -77,7 +77,7 @@ const Bulletins = () => {
                                     value = date.format('YYYY-MM-DD HH:mm:ss');
                                  } 
                                  return (
-                                    <TableCell key={j} align={column.align} sx={{ '&:hover': { color: 'var(--color-LGred)'} }}>
+                                    <TableCell key={j} align={column.align} sx={{ '&:hover': { color: 'var(--color-LGred)' } }}>
                                        <Link href={url}>{value}</Link>
                                     </TableCell>
                                  );

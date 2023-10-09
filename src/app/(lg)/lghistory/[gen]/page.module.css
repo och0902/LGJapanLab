@@ -1,0 +1,26 @@
+.genBtn {
+   width: 20%;
+   color: var(--color-black);
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.genBtn:hover {
+   color: var(--color-LGred);
+   text-decoration: none;
+}
+
+.mainImg {
+   transition: all 0.3s ease;
+}
+
+.mainImg:hover {
+   transform: scale(1.05);
+}
+
+@media screen and (max-width: 900px) {
+   .histories {
+      flex-direction: row-reverse; 
+   }
+}

@@ -2,37 +2,18 @@
 
 import React, { useState, useRef, useEffect,} from 'react';
 import styles from './Navbar.module.css';
-import Image from 'next/image';
+import { links, languages } from  './NavMenu';
 import Link from 'next/link';
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Box, FormControl, MenuItem, Select } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 const Navbar = () => {
-
-   const links = [
-      {  title: 'LG',
-         subLinks: [
-            { title: 'History', url: '/lghistory' },
-            { title: 'CI & LG way', url: '/ci&lgway' }, 
-            { title: 'Affiliated', url: '/affiliated' },
-            { title: 'Products', url: '/product' }
-         ],
-      },
-      {  title: 'Japan Lab',
-         subLinks: [
-            { title: 'History', url: '/jlhistory' },
-            { title: 'Mission & Role', url: '/jlmission&role' },
-            { title: 'Key Research Area', url: '/jlkeyarea' },
-            { title: 'Carrier', url: '/carrier' },
-            { title: 'Contact Us', url: '/contact' }
-         ],
-      },
-   ];
 
    const [ showMenu, setShowMenu ] = useState(false);
    const ShowMenu = () => {
@@ -79,12 +60,6 @@ const Navbar = () => {
       };
    }, []);
 
-   const languages = [
-      { language: 'Eng', url: '#' },
-      { language: 'Jpn', url: '#' },
-      { language: 'Kor', url: '#'} 
-   ];
-
    const [ language, setLanguage ] = useState('Eng');
    
    const handleLanguage = (e) => {
@@ -100,7 +75,7 @@ const Navbar = () => {
          <Box className={styles.navContainer}>
             <Box sx={{ height: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
                <Link href='/' style={{ textDecoration: 'none', zIndex: '110' }}>
-                  <Image src='/images/LG-logo.png' width={93} height={50} alt='LG logo' />
+                  <Image src='/images/LG-logo.png' width={93} height={50} alt='LG logo' loading='lazy' />
                   <Box sx={{ color: 'var(--color-LGgray)', fontSize: '18px', fontWeight: '800', mt: '-15px', pl: '50px' }}>
                      Japan Lab Inc.</Box>
                </Link>
@@ -119,7 +94,7 @@ const Navbar = () => {
                      link.subLinks ? (
                         <li key={i} className={styles.listItem} ref={(elem) => (dropdownItems.current[i] = elem)}>
                            <Link href='' className={styles.listTitle} onClick={() => handleClick(i)}>
-                              <Typography>{link.title}</Typography>
+                              {link.title}
                               <KeyboardArrowDownIcon className={styles.dropdownArrow} />
                            </Link>
                            <ul className={styles.dropdownContainer}>
@@ -127,7 +102,7 @@ const Navbar = () => {
                                  {link.subLinks.map((subLink, j) => (
                                     <li key={j} className={styles.dropdownList}>
                                        <Link href={subLink.url} className={styles.dropdownTitle}>
-                                          <Typography sx={{ padding: '5px 20px' }}>{subLink.title}</Typography>
+                                          <Box sx={{ padding: '5px 20px' }}>{subLink.title}</Box>
                                        </Link>
                                     </li>
                                  ))}
@@ -137,7 +112,7 @@ const Navbar = () => {
                      ) : (
                         <li key={i} className={styles.listItem}>                           
                            <Link href={link.url} className={styles.listTitle} style={{ pointerEvents: 'initial' }}>
-                              <Typography>{link.title}</Typography>
+                              {link.title}
                            </Link>
                         </li>
                      )
@@ -146,27 +121,12 @@ const Navbar = () => {
                   {session.status === 'authenticated' && (
                      <li className={styles.listItem} >
                         <Link href='/bulletins' className={styles.listTitle} style={{ pointerEvents: 'initial' }}>
-                           <Typography>Bulletin</Typography></Link>
+                           Bulletin
+                        </Link>
                      </li>
                   )}
 
                   <li className={styles.listSpace}></li>
-
-                  {session.status !== 'authenticated' ? 
-                     ( 
-                        <li className={styles.listItem} >
-                           <Link href='/signIn' className={styles.listTitle} 
-                              style={{ padding: '10px', pointerEvents: 'initial', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                              <Typography>Sign In</Typography><LoginIcon sx={{ mb: '-5px' }} /></Link>
-                        </li>
-                     ) : (
-                        <li className={styles.listItem} >
-                           <Link href='/signIn' className={styles.listTitle} 
-                              style={{ padding: '10px', pointerEvents: 'initial', display: 'flex', alignItems: 'center', gap: '5px' }} onClick={signOut}>
-                              <LogoutIcon sx={{ mb: '-5px' }}/><Typography>Sign Out</Typography></Link>
-                        </li>
-                     )
-                  }
 
                   <li className={styles.listItem} style={{ padding: '10px', display: 'flex', alignItems: 'center' }}>
                      <FormControl variant='standard' sx={{ p: 0, minWidth: 60 }}>
@@ -177,6 +137,22 @@ const Navbar = () => {
                         </Select>
                      </FormControl>
                   </li>
+
+                  {session.status !== 'authenticated' ? 
+                     ( 
+                        <li className={styles.listItem} >
+                           <Link href='/signIn' className={styles.listTitle} style={{ padding: '10px', pointerEvents: 'initial' }}>
+                              <LockOutlinedIcon sx={{ mb: '-5px' }} />
+                           </Link>
+                        </li>
+                     ) : (
+                        <li className={styles.listItem} >
+                           <Link href='/signIn' className={styles.listTitle} style={{ padding: '10px', pointerEvents: 'initial' }} onClick={signOut}>
+                              <LockOpenOutlinedIcon sx={{ mb: '-5px' }}/>
+                           </Link>
+                        </li>
+                     )
+                  }
 
                </ul>
             </Box>

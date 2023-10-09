@@ -2,7 +2,7 @@
    max-width: var(--width-page);
    height: var(--height-nav);
    margin: auto;
-   padding: 0 var(--padding-basic);
+   padding: 0 var(--horizontal-basic);
 }
 
 .toggle {
@@ -29,7 +29,6 @@
 
 @media screen and (max-width: 900px) {
    .menuContainer {
-      background-color: var(--color-bg);
       position: absolute;
       top: calc( var(--height-nav) - 30px );
       left: 0;
@@ -37,7 +36,8 @@
       /* height: calc( (var(--height-page) - var(--height-nav))*2/3 ); */
       overflow: auto;
       padding: 10px 40px 7dvh 40px;
-      box-shadow: 0 6px 8px var(--color-LGgray-light);
+      background-color: var(--color-LGgray-light);
+      /* box-shadow: 0 6px 8px var(--color-LGgray-light); */
       pointer-events: none;
       opacity: 0;
       transition: top 0.4s, opacity 0.3s;
@@ -97,6 +97,7 @@
 .dropdownItem {
    display: flex;
    flex-direction: column;
+   background-color: var(--color-LGgray-light);
 }
 
 .dropdownList {
@@ -144,27 +145,25 @@
 
    .listTitle {
       height: 100%;
-      padding: 10px 25px;
+      padding: 10px 20px;
       pointer-events: none;
    }
 
    .dropdownContainer {
       position: absolute;
-      top: calc( var(--height-nav) - 40px );
+      top: calc( var(--height-nav) - 30px );
       left: 0;
       right: 0;
-      width: 100%;
-      height: calc( var(--height-nav) - 40px );
-      padding-bottom: 10px;
-      background-color: var(--color-bg);
-      box-shadow: 0 6px 8px var(--color-LGgray-light);
+      max-width: var(--width-page);
+      height: calc( var(--height-nav) - 25px );
+      margin: 0 auto;
       pointer-events: none;
       opacity: 0;
       transition: top 0.3s, opacity 0.5s;
    }
 
    .dropdownItem {
-      max-width: var(--width-page);
+      width: calc( 100% - var(--horizontal-basic) * 2 );
       height: 100%;
       margin: auto;
       display: flex;
@@ -187,7 +186,8 @@
    }
 
    .listItem:hover > .dropdownContainer {
-      top: calc( var(--height-nav) - 25px );
+      top: calc( var(--height-nav) - 15px );
+      /* padding: 0 var(--horizontal-basic); */
       opacity: 1;
       pointer-events: initial;
       cursor: initial;

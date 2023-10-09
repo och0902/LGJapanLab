@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 const Watch = () => {
 
    const searchParams = useSearchParams();
-   const v = '/videos/products'+searchParams.get('v');
+   const v = '/videos/lg/lgproducts'+searchParams.get('v');
 
    return (
       <Box className='pageContainer'>
