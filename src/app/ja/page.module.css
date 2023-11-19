@@ -1,0 +1,9 @@
+.thumbnail {
+   object-fit: contain;
+   position: relative;
+   transition: all 2s ease;
+}
+
+.thumbnail:hover {
+   transform: scale(1.5);
+}

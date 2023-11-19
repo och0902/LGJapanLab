@@ -8,14 +8,16 @@ const PageHero = ({ image, aspectRatio, title, color='var(--color-white)', messa
    const theme = useTheme();
    
    return (
-      <Box sx={{ width: '100%', aspectRatio, position: 'relative'  }}>
-         <Image src={image} fill sizes='width: 100%' loading='lazy' alt='PageHero' />
-         <Box sx={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', px: '10%' }}>
+      <Box sx={{ width: '100%', aspectRatio, position: 'relative',
+         [theme.breakpoints.down('md')] : { width: '175%' } }}>
+         <Image src={image} fill sizes='100%' alt='PageHero' />
+         <Box sx={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', px: '10%',
+            [theme.breakpoints.down('md')] : { px: '25%' }}}>
             <Box sx={{ color }}>
                <Box sx={{ fontSize: '4rem', textShadow: '5px 5px 5px var(--color-LGgray)',
                   [theme.breakpoints.down('lg')] : { fontSize: '3.5rem' },
-                  [theme.breakpoints.down('md')] : { fontSize: '2.75rem' },
-                  [theme.breakpoints.down('sm')] : { fontSize: '2rem' } }}>{title}</Box>
+                  // [theme.breakpoints.down('md')] : { fontSize: '2.75rem' },
+                  [theme.breakpoints.down('sm')] : { fontSize: '2.5rem' } }}>{title}</Box>
                <Box sx={{ [theme.breakpoints.down('md')] : { fontSize: '0.75rem' } }}>{message1}</Box>
                <Box sx={{ [theme.breakpoints.down('md')] : { fontSize: '0.75rem' } }}>{message2}</Box>
             </Box>

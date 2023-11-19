@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Paper, Box, Typography, } from '@mui/material';
+import { Paper, Box, Typography } from '@mui/material';
 
 const getDate = () => {
 
@@ -42,8 +42,12 @@ const GetTime = () => {
    return (
       <Paper sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}}>
          <Box sx={{ display: 'flex',  flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <Typography variant='h4'>{time.year}.{time.month}.{time.day} {time.dayOfWeek}</Typography>
-            <Typography variant='h4'>{time.ampm} {time.hours}:{time.minutes}:{time.seconds}</Typography>
+            <Typography sx={{ mb: '10px', fontSize: '2rem', color: 'var(--color-LGgray)' }}>
+               {time.year}.{time.month}.{time.day} {time.dayOfWeek}
+            </Typography>
+            <Typography sx={{ fontSize: '2rem', color: 'var(--color-LGgray)' }}>
+               {time.ampm} {time.hours}:{time.minutes}:{time.seconds}
+            </Typography>
          </Box>
       </Paper>
    ); 

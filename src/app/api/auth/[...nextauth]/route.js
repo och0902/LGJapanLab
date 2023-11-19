@@ -53,16 +53,16 @@ const handler = NextAuth ({
 
 export { handler as GET, handler as POST };
 
-// export async function PUT( request, { params } ) {
-//    const id = params.nextauth[0];
-//    const { name, email, newPassword } = await request.json();
-//    // console.log(id, name, email, newPassword); 
-//    const hashedNewPassword = await bcrypt.hash(newPassword, 5);
-//    await connectDB();
-//    try {
-//       await Users.findByIdAndUpdate(id, { name, email, password: hashedNewPassword });      
-//    } catch (error) {
-//       return new NextResponse(error.message, { status: 500 });      
-//    }
-//    return NextResponse.json({ message: 'password updated ...'}, { status: 200 });
-// };
+export async function PUT( request, { params } ) {
+   const id = params.nextauth[0];
+   const { name, email, newPassword } = await request.json();
+   // console.log(id, name, email, newPassword); 
+   const hashedNewPassword = await bcrypt.hash(newPassword, 5);
+   await connectDB().catch((error) => new NextResponse(error.message, { status: 500 }));
+   try {
+      await Users.findByIdAndUpdate(id, { name, email, password: hashedNewPassword });      
+   } catch (error) {
+      return new NextResponse(error.message, { status: 500 });      
+   }
+   return NextResponse.json({ message: 'password updated ...'}, { status: 200 });
+};

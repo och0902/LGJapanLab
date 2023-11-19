@@ -1,0 +1,12 @@
+.link:hover {
+   color: var(--color-LGred);
+}
+
+.buttonRed {
+   transition: all 0.3s ease;
+}
+
+.buttonRed:hover {
+   text-decoration: none;
+   transform: scale(1.05);
+}

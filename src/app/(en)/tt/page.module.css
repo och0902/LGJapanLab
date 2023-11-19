@@ -1,0 +1,47 @@
+.privacypolicy:hover {
+   color: var(--color-LGred);
+}
+
+.input,
+.textarea {
+   width: 500px;
+   padding: 10px;
+   border: 1px solid var(--color-LGgray);
+   border-radius: 3px;
+}
+
+.textarea {
+   height: 200px;
+}
+
+@media screen and (max-width: 900px) {
+   .input,
+   .textarea {
+      width: 350px;
+   }   
+}
+
+@media screen and (max-width: 600px) {
+   .input,
+   .textarea {
+      width: 200px;
+   }   
+}
+
+.buttonRed {
+   width: 200px;
+   padding: 15px 20px;
+   background-color: var(--color-LGred);
+   color: var(--color-white);
+   text-align: center;
+   border: none;
+   border-radius: 26px;
+   box-shadow: 3px 3px 3px var(--color-LGgray);
+   transition: all 0.3s ease;
+   cursor: pointer;
+}
+
+.buttonRed:hover {
+   text-decoration: none;
+   transform: scale(1.05);
+}

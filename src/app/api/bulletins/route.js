@@ -1,8 +1,8 @@
-import Bulletins from '@/models/Bulletin';
 import connectDB from '@/libs/connectDB';
+import Bulletins from '@/models/Bulletin';
 import { NextResponse } from 'next/server';
 
-export async function POST(request) {
+export async function POST( request ) {
    const { title, author, bulletin } = await request.json();
    await connectDB().catch((err) => new NextResponse(err.message, { status: 500 }));
    await Bulletins.create({ title, author, bulletin });
