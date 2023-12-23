@@ -1,12 +1,7 @@
-import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
-import MemoryOutlinedIcon from '@mui/icons-material/MemoryOutlined';
-import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined';
-import SatelliteAltOutlinedIcon from '@mui/icons-material/SatelliteAltOutlined';
-
 const Affilated = [
    {  
       fields: 'Holdings & ...',
-      icon:  <BusinessOutlinedIcon sx={{ ml: '5px', mb: '-5px' }}/>,
+      icon:  '/images/lg/affiliated/holdings.png',
       companies: [
          {
             name: 'LG Corp.',
@@ -50,7 +45,7 @@ const Affilated = [
    },
    {
       fields: 'Electronics',
-      icon: <MemoryOutlinedIcon sx={{ ml: '5px', mb: '-5px' }} />,
+      icon:  '/images/lg/affiliated/electrons.png',
       companies: [
          {
             name: 'LG Electronics',
@@ -92,7 +87,7 @@ const Affilated = [
    },
    {
       fields: 'Chemicals',
-      icon: <ScienceOutlinedIcon sx={{ ml: '5px', mb: '-5px' }} />,
+      icon:  '/images/lg/affiliated/chemical.png',
       companies: [
          {
             name: 'LG Chem',
@@ -129,7 +124,7 @@ const Affilated = [
    },
    {
       fields: 'Communication & Services',
-      icon: <SatelliteAltOutlinedIcon sx={{ ml: '5px', mb: '-5px' }} />,
+      icon:  '/images/lg/affiliated/communication.png',
       companies: [
          {
             name: 'LG U+',

@@ -38,7 +38,7 @@ const JLAboutUs= () => {
                <Box sx={{ fontSize: '2rem' }}>Location</Box>
                <Box sx={{  p: '10px 20px', backgroundColor: 'var(--color-LGred)', color: 'var(--color-white)',
                   borderRadius: '26px', boxShadow: '3px 3px 3px var(--color-LGgray)' }}>
-                  <Link href='/applyToVisit' className={styles.buttonRed}>Apply to Visit</Link>
+                  <Link href='/visitLGJL' className={styles.buttonRed}>Visit LG Japan Lab</Link>
                </Box>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '50px' }}>

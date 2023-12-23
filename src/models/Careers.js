@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
-
-const careersSchema = new Schema({
-   checkbox: { type: Boolean , default: true },
-   position: { type: String, required: [true, 'position is required ...'] },
+const careersSchema = new mongoose.Schema({
    name: { type: String, required: [true, 'name is required ...'] },
    email: { type: String, required: [true, 'email is required ...'] },
-   filePaths: { type: Array, required: [true] },
+   mobile: { type: String, required: [true, 'mobile phone number is required ...'] },
+   position: { type: String, required: [true, 'position is required ...'] },
+   files: { type: Array, required: [true,'file paths are required ...'] },
    otherMatters: { type: String },
+   privacyCheck: { type: Boolean , default: true },
+   recruitmentStatus: { type: String },
    }, { timestamps: true }
 ); 
 

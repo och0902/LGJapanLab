@@ -35,64 +35,54 @@ const Create = () => {
       };
       
       try {
-         const url = '/api/bulletins';
-         fetch(url, {
+         fetch('/api/bulletins', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ title, author, bulletin }),
-         })
-         .then ((response) => {
+         }).then ((response) => {
             if( !response.ok ) {
                toast.error('failed to create a bulletin');
+            } else {
+               return response.json();
             };
-         })
-         .catch (error => { toast.error(error) });
+         }).then((result) => { 
+            toast.success(result.message);      
+            router.push('/bulletins'); router.refresh();
+         });
       } catch (error) {
-         toast.error('something went wrong ...');
+         toast.error(error.message);
       };
-      router.push('/bulletins');
-      router.refresh();
-
    };
 
    return (
-      <Box sx={{ width: '100%' }}> 
-         <Paper>
-            <form onSubmit={handleSubmit}>
-               <Box variant='body1' sx={{ p: '10px' }}>
-                  <TextField
-                     type= 'text'
-                     name= 'title'
-                     label= 'Title'
-                     onChange={(e) => setTitle(e.target.value)}
-                     value={title}
-                     size= 'small'
-                     sx={{ width: '100%', textDecoration: 'none', }}   
-                  />
-               </Box>
-               <Divider />
-               <Box sx={{ p: '10px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <TextEditor          
-                     value={bulletin}
-                     style={{ width: '100%', minHeight: '40vh' }}
-                     onChange={ setBulletin }
-                     modules={toolbarOptions}
-                  />
-                  <Box sx={{ p: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-                     <Link href='/bulletins'>
-                        <Button sx={{ ml: '20px', px: '10px', width: 'max-contnt', '&:hover': { color: 'var(--color-LGred)', } }}>
-                           <Box><ArrowBackOutlinedIcon sx={{ mb: -0.8 }} /> Bulletin</Box>
-                        </Button>
-                     </Link>
-                     <Box sx={{ display: 'flex', alignItems: 'center', px: '10px', mr: '20px', }}>
-                        <Button type='submit' sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--color-LGred)', } }}>
-                           <Box><CreateNewFolderOutlinedIcon sx={{ mb: -0.8 }}/> Create</Box>
-                        </Button>
+      <Box className='pageContainer'>
+         <Box sx={{ width: '100%' }}> 
+            <Paper>
+               <form onSubmit={handleSubmit}>
+                  <Box variant='body1' sx={{ p: '10px' }}>
+                     <TextField type='text' placeholder='Title' size= 'small' sx={{ width: '100%', textDecoration: 'none', }}  
+                        onChange={(e) => setTitle(e.target.value)} />
+                  </Box>
+                  <Divider />
+                  <Box sx={{ p: '10px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                     <TextEditor style={{ width: '100%', minHeight: '40vh' }} modules={toolbarOptions}
+                        onChange={ setBulletin } value={ bulletin } />
+                     <Box sx={{ p: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+                        <Link href='/bulletins'>
+                           <Button sx={{ ml: '20px', px: '10px', width: 'max-contnt', '&:hover': { color: 'var(--color-LGred)', } }}>
+                              <Box><ArrowBackOutlinedIcon sx={{ mb: -0.8 }} /> Bulletin</Box>
+                           </Button>
+                        </Link>
+                        <Box sx={{ display: 'flex', alignItems: 'center', px: '10px', mr: '20px', }}>
+                           <Button type='submit' sx={{ width: 'max-contnt', px: '10px', '&:hover': { color: 'var(--color-LGred)', } }}>
+                              <Box><CreateNewFolderOutlinedIcon sx={{ mb: -0.8 }}/> Create</Box>
+                           </Button>
+                        </Box>
                      </Box>
                   </Box>
-               </Box>
-            </form>
-         </Paper>
+               </form>
+            </Paper>
+         </Box>
       </Box>
    );
 };

@@ -6,22 +6,13 @@ import mongoose from 'mongoose';
 
 const connectDB = async (request, response, next) => {
 
-   if (mongoose.connections[0].readyState) {
-      return next();
-   };
+   if (mongoose.connections[0].readyState) { return next(); };
 
    try {
-      const { connection } = await mongoose.connect(process.env.MONGODB_URL, {
-         useNewUrlParser: true,
-         useUnifiedTopology: true,
-      });
-
-      if ( connection.readyState === 1) {
-         return Promise.resolve(true);
-      }
-
+      const { connection } = await mongoose.connect(process.env.MONGODB_URL, {});
+      if ( connection.readyState === 1) { return Promise.resolve(true); };
    } catch (error) {
-      throw new Error('could not connect to MongoDB');
+      throw new Error('could not connect to MongoDB ...');
       // return Promise.reject(error);
    };
 };

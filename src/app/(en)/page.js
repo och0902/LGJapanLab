@@ -6,7 +6,7 @@ import styles from './page.module.css';
 import { Box, Grid } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { videos, mediaList, relatedList } from '../pageData';
+import { videos, mediaList, relatedList } from './pageData';
 import { useTheme } from '@emotion/react';
 
 const Root = () =>  {

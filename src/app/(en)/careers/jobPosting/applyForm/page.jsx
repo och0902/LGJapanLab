@@ -25,41 +25,38 @@ const ApplyForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-			if ( checkbox !== true ) { alert('Privacy Policy에 동의하여 주십시요');	return; }
-		// if ( !position || !name || !email || !confirmEmail ) { alert('필수 항목을 입력하여 주세요.'); return; }
-		if ( !position || !name || !email || !confirmEmail || !files ) { alert('필수 항목을 입력하여 주세요.'); return; }
-		if ( email !== confirmEmail ) { alert('Email이 일치하지 않습니다'); return; }
+		if ( checkbox !== true ) { toast('Privacy Policy에 동의하여 주십시요');	return; }
+		if ( !position || !name || !email || !confirmEmail || !files ) { toast('필수 항목을 입력하여 주세요.'); return; }
+		if ( email !== confirmEmail ) { toast('Email이 일치하지 않습니다'); return; }
 	
 		const formData = new FormData();
 
+		formData.set('checkbox', checkbox);
 		formData.set('position', position);
 		formData.set('name', name);
 		formData.set('email', email);
-		formData.set('files', files);
 		formData.set('otherMatters', otherMatters);
-
-		console.log('files', files);
+				
+		const fileLength = files.length;
+      formData.append('fileLength', fileLength);
+      for( var i=0 ; i < fileLength ; i++ ) {
+         formData.append(`files${i}`, files[i]);
+      };
 
       try {
          const url = '/api/careers';
          fetch(url, {
             method: 'POST',
             body: formData,
-         })
-         .then ((response) => {
-            if( response.ok ) {
-               toast.success('Your data was successfully delivered to the person in charge.');
-            } else {
-					toast.error('failed to create a careers data');
-				};
-				
-				router.push('/careers/jobPosting');
-				router.refresh();
-		
-         })
-         .catch (error => { toast.error(error) });
+				header: { 'Custom-Header': 'value', },
+         }).then ((response) => {
+            if( response.ok ) return response.json();
+			}).then ((result) => {
+				toast.success(result.message);
+				router.push('/careers/jobPosting');	router.refresh();
+			});
       } catch (error) {
-         toast.error('something went wrong ...');
+         toast.error(error.message);
       };
 
 	};
@@ -138,7 +135,7 @@ const ApplyForm = () => {
 								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Resume and Job Experience
 							</Box>
 							<Box sx={{ flexBasis: '70%' }}>
-								<input type='file' className={styles.input} onChange={(e) => setFiles(e.target.files?.[0])} />
+								<input type='file' multiple className={styles.input} onChange={(e) => setFiles(e.target.files)} />
 							</Box>						
 						</Box>
 						<Box sx={{ width: '50%', m: 'auto', my: '20px', [theme.breakpoints.down('sm')] : { width: '80%',} }}>

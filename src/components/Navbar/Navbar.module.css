@@ -199,3 +199,20 @@
       padding: 10px 50px;
    }
 }
+
+.languageSelect {
+   padding: 10px;
+   font-size: 1rem;
+   color: var(--color-LGgray);
+   border: none;;
+}
+
+.languageSelect:hover {
+   cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+   .languageSelect {
+      background-color: var(--color-LGgray-light);
+   }
+}

@@ -4,17 +4,16 @@ import React, { useState, useRef, useEffect,} from 'react';
 import styles from './Navbar.module.css';
 import { links, languages } from './NavMenu';
 import Link from 'next/link';
-import { Box, FormControl, MenuItem, Select } from '@mui/material';
+import { Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+
+   const router = useRouter();
 
    const [ showMenu, setShowMenu ] = useState(false);
    const ShowMenu = () => {
@@ -33,6 +32,7 @@ const Navbar = () => {
          item.classList.add(styles.showDropdown);
       }
    };
+
    const handleClick = (index) => {
       const item = dropdownItems.current[index];
       toggleItem(item);
@@ -62,16 +62,13 @@ const Navbar = () => {
    }, []);
 
    const [ language, setLanguage ] = useState('Eng');
-
-   const router = useRouter();
-   
    const handleLanguage = (e) => {
       e.preventDefault();
 
-      const lan = e.target.value;
-      setLanguage(lan);Image
+      const lang = e.target.value;
+      setLanguage(lang);
       
-      switch (lan) {
+      switch (lang) {
          case 'Eng':
             router.push('/');
             break;
@@ -81,16 +78,11 @@ const Navbar = () => {
       };
    };
 
-   const session = useSession();
-
    return (
       <Box sx={{ position: 'fixed', top: '0', left: '0', width: '100%', backgroundColor: 'var(--color-bg)', zIndex: '100'}}>
          <Box className={styles.navContainer}>
             <Box sx={{ height: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
                <Link href='/' style={{ textDecoration: 'none', zIndex: '110' }}>
-                  {/* <Image src='/images/LG-logo.png' width={93} height={70} alt='LG logo' loading='lazy' />
-                  <Box sx={{ color: 'var(--color-LGgray)', fontSize: '18px', fontWeight: '800', mt: '-15px', pl: '50px' }}>
-                     Japan Lab Inc.</Box> */}
                   <Image src='/images/LGJapanLabInc.png' priority='high' width={160} height={55} alt='LG Japan Lab' />
                </Link>
                <Box className={(showMenu ? styles.toggle + ' ' + styles.showIcon : styles.toggle)} onClick={ShowMenu}>
@@ -132,43 +124,16 @@ const Navbar = () => {
                      )
                   ))}
 
-                  {session.status === 'authenticated' && (
-                     <li className={styles.listItem} >
-                        <Link href='/bulletins' className={styles.listTitle} style={{ pointerEvents: 'initial' }}>
-                           Bulletin
-                        </Link>
-                     </li>
-                  )}
-
                   <li className={styles.listSpace}></li>
 
-                  <li className={styles.listItem} style={{ padding: '10px', display: 'flex', alignItems: 'center' }}>
-                     <FormControl variant='standard' sx={{ p: 0, minWidth: 60 }}>
-                        <Select value={language} onChange={handleLanguage} sx={{ color: 'var(--color-LGgray)', '&:hover': { color: 'var(--color-LGred)' } }} >
-                           {languages.map((language, i) => (
-                              <MenuItem key={i} sx={{ pl: '10px', color: 'var(--color-LGgray)' }} value={language.language}>{language.language}</MenuItem>
-                           ))}
-                        </Select>
-                     </FormControl>
+                  <li className={styles.listItem} style={{ padding: '10px', display: 'flex', alignItems: 'center' }} >
+                     <select className={styles.languageSelect} value={language} onChange={handleLanguage} >
+                        <option value='Eng'>Eng</option>
+                        <option value='Jpn'>Jpn</option>
+                     </select>
                   </li>
-
-                  {session.status !== 'authenticated' ? 
-                     ( 
-                        <li className={styles.listItem} >
-                           <Link href='/signIn' className={styles.listTitle} style={{ padding: '10px', pointerEvents: 'initial' }}>
-                              <LockOutlinedIcon sx={{ mb: '-5px' }} />
-                           </Link>
-                        </li>
-                     ) : (
-                        <li className={styles.listItem} >
-                           <Link href='/signIn' className={styles.listTitle} style={{ padding: '10px', pointerEvents: 'initial' }} onClick={signOut}>
-                              <LockOpenOutlinedIcon sx={{ mb: '-5px' }}/>
-                           </Link>
-                        </li>
-                     )
-                  }
-
                </ul>
+
             </Box>
          </Box>
       </Box>   

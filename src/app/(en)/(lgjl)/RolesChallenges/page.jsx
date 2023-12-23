@@ -12,7 +12,7 @@ const JLHistoryMission = () => {
 
    return (
 		<Box className='pageContainer'>
-         <PageHero image='/images/lgjl/JLRolesChallenges.png' aspectRatio='1920/400' title='Roles, R&D Challenges' />
+         <PageHero image='/images/lgjl/rolesChallenges/RolesChallenges.png' aspectRatio='1920/400' title='Roles, R&D Challenges' />
 
          <Box sx={{ width: '100%' }}>
 
@@ -20,7 +20,7 @@ const JLHistoryMission = () => {
                [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
                <Box sx={{ width: '700px', aspectRatio: '918/203', mt: 'var(--gap-basic)', position: 'relative', 
                   [theme.breakpoints.down('lg')] : { width: '60%' }, [theme.breakpoints.down('sm')] : { width: '80%' },}}>
-                  <Image src='/images/lgjl/FutureLifeWithOurTechnology.png' fill sizes='100%' alt='Future Life With Our Technology' />
+                  <Image src='/images/lgjl/rolesChallenges/FutureLifeWithOurTechnology.png' fill sizes='100%' alt='Future Life With Our Technology' />
                </Box>
             </Box>
 
@@ -50,7 +50,10 @@ const JLHistoryMission = () => {
                [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' },
                [theme.breakpoints.down('md')] : { flexDirection: 'column', gap: '40px' } }}>
                <Box sx={{ flexBasis: '50%' }}>
-                  <Box sx={{ mb: '-6px', px: '20px', fontSize: '1.5rem', color: 'var(--color-black)' }}>Electronics Field</Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                     <Box sx={{ mt: '20px', px: '20px', fontSize: '1.5rem', color: 'var(--color-black)' }}>Electronics Field</Box>
+                     <Image src='/images/lgjl/rolesChallenges/electrons.png' width={30} height={30} style={{ marginBottom: '-10px' }} alt='electons' />
+                  </Box>
                   <Box sx={{ height: '100%', p: '20px', color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)', 
                      borderRadius: '40px', boxShadow: '0 4px 4px var(--color-LGgray)',
                      [theme.breakpoints.down('md')] : { px: '10px' } }}>
@@ -71,7 +74,10 @@ const JLHistoryMission = () => {
                </Box>
             
                <Box sx={{ flexBasis: '50%' }}>
-                  <Box sx={{ mb: '-6px', px: '20px', fontSize: '1.5rem', color: 'var(--color-black)' }}>Chemical Field</Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                     <Box sx={{ mt: '20px', px: '20px', fontSize: '1.5rem', color: 'var(--color-black)' }}>Chemical Field</Box>
+                     <Image src='/images/lgjl/rolesChallenges/chemical.png' width={30} height={30} alt='chemical' />
+                  </Box>
                   <Box sx={{ height: '100%', p: '20px', color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)', 
                      borderRadius: '40px', boxShadow: '0 4px 4px var(--color-LGgray)',
                      [theme.breakpoints.down('md')] : { px: '10px' } }}>

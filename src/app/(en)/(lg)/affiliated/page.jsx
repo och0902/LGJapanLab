@@ -8,6 +8,7 @@ import { useTheme } from '@emotion/react';
 import Link from 'next/link';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import PageHero from '@/components/PageHero/PageHero';
+import Image from 'next/image';
 
 const LGAffiliated = () => {
 
@@ -18,7 +19,7 @@ const LGAffiliated = () => {
          <PageHero image='/images/lg/affiliated/affiliated.png' aspectRatio='1920/400' title='Affiliated Companies' 
             message1='We create value for our customers' />
 
-         <Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)/2 )',  [theme.breakpoints.down('md')] : { width: '100%', px: '5px' } }}>
+         <Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)/2 )', [theme.breakpoints.down('md')] : { width: '100%', px: '5px' } }}>
             <Box sx={{ fontSize: '2rem', mb: '1dvh' }}>LG Group</Box>
             <Box sx={{ fontSize: '1rem', lineHeight: '150%' }}>
                LG Group&apos;s business portfolio covers three key areas: Electronics, Chemicals, and Telecommunications & Services, 
@@ -32,8 +33,9 @@ const LGAffiliated = () => {
             [theme.breakpoints.down('md')] : { flexDirection: 'column', gap: 'calc( var(--gap-basic)/2 )' } }}>
             {Affiliated.map((field, i) => (
                <Box key={i}>
-                  <Box sx={{ mb: '30px', fontSize: '1.5rem', color: 'var(--color-LGred)' }}>
-                     <Box>{field.fields}{field.icon}</Box>
+                  <Box sx={{ mb: '5px', display: 'flex', alignItems: 'center', gap: '20px' }}>
+                     <Box sx={{ fontSize: '1.5rem', color: 'var(--color-LGred)' }}>{field.fields}</Box>
+                     <Image src={field.icon} width={30} height={30} alt='icon' />
                   </Box>
                   <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                      {field.companies.map((company, j) => (

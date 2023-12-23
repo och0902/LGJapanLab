@@ -4,29 +4,31 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, 
          TableHead, TablePagination, TableRow, Typography } from '@mui/material';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import CreateNewFolderOutlinedIcon from '@mui/icons-material/CreateNewFolderOutlined';
 import moment from 'moment/moment';
+import { toast } from 'react-hot-toast';
 
 const Bulletins = () => {
 
-   const session = useSession();
-   const router = useRouter();
-
    const [ bulletins, setBulletins ] = useState([]);
-   const [ doneFetch, setDoneFetch ] = useState(false);
+
+   const [ page, setPage ] = useState(0);
+	const [ rowsPerPage, setRowsPerPage ] = useState(10);
 
    useEffect(() => {
-      const url = '/api/bulletins';
-      fetch(url, { method: 'GET', cache: 'no-store', })
-         .then (response => response.json())
-         .then (result => {
+      try{
+         fetch('/api/bulletins', {
+            method: 'GET', 
+            cache: 'no-store', 
+         }).then ((response) => {
+            return response.json();
+         }).then ((result) => {
             const { bulletins } = result;
             setBulletins(bulletins);
-            setDoneFetch(true);
-         }) 
-         .catch (error => { throw new Error(error); });
+         });
+      } catch { 
+         (error) => toast.error(error.message);
+      };
    },[ bulletins ]);
 
    const columns = [
@@ -36,21 +38,19 @@ const Bulletins = () => {
       { id: 'title', label: 'Title', minWidth: 50, align: 'left', },
    ];
 
-   const [ page, setPage ] = React.useState(0);
-	const [ rowsPerPage, setRowsPerPage ] = React.useState(10);
-
-	const handleChangePage = (event, newPage) => {
-		setPage(newPage);
+	const handleChangePage = (e, newPage) => {
+      e.preventDefault();
+      setPage(newPage);
 	};
 
-	const handleChangeRowsPerPage = (event) => {
-		setRowsPerPage(+event.target.value);
+	const handleChangeRowsPerPage = (e) => {
+      e.preventDefault();
+		setRowsPerPage(+e.target.value);
 		setPage(0);
 	};
 
-
-   if(doneFetch) {
-      return (
+   return (
+      <Box className='pageContainer'>
          <Paper sx={{ width: '100%', }}>
             <TableContainer sx={{ maxHeight: '100%', overflow: 'hidden'  }}>
                <Table stickyHeader size='small' aria-label="sticky table">
@@ -105,8 +105,8 @@ const Bulletins = () => {
                onRowsPerPageChange={handleChangeRowsPerPage}
             />
          </Paper>
-      );
-   };
+      </Box>
+   );
 };
 
 export default Bulletins;

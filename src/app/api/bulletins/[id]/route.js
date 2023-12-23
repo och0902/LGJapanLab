@@ -10,7 +10,7 @@ export async function PUT( request, { params } ) {
    return NextResponse.json({ message: 'bulletin updated ...'}, { status: 200 });
 };
 
-export async function GET(request, { params }) {
+export async function GET( request, { params } ) {
    const { id } = params;
    await connectDB().catch((err) => new NextResponse(err.message, { status: 500 }));
    const bulletin = await Bulletins.findOne({ _id: id });
@@ -18,7 +18,7 @@ export async function GET(request, { params }) {
    return NextResponse.json({ bulletin }, { status: 200 });
 };
 
-export async function DELETE(request, { params }) {
+export async function DELETE( request, { params } ) {
    const { id } = params;
    await connectDB().catch((err) => new NextResponse(err.message, { status: 500 }));
    await Bulletins.findByIdAndDelete(id);

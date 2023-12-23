@@ -10,20 +10,17 @@ export const links = [
    {  title: 'LG Japan Lab',
       subLinks: [
          { title: 'LG Japan Lab History', url: '/jlHistory' },
-         { title: 'Roles, R&D Challenges', url: '/RolesChallenges' },
-         { title: 'Key Research Issue', url: '/jlKeyResearch' },
-         { title: 'About Us', url: '/jlAboutUs' },
+         { title: 'Roles, R&D Challenges', url: '/rolesChallenges' },
+         { title: 'Key Research Issue', url: '/keyResearch' },
+         { title: 'About Us', url: '/aboutUs' },
+         { title: 'Visiting Application', url: '/visit' },
       ],
    },
    {  title: 'Careers',
       subLinks: [
-         { title: 'Recruitment Information', url: '/careers/recruitInfo' },
-         { title: 'Job Posting', url: '/careers/jobPosting' },
+         { title: 'Recruitment Information', url: '/recruitInfo' },
+         { title: 'Job Posting', url: '/jobPosting' },
+         { title: 'Recruitment Application', url: '/recruit' },
       ],
    },
-];
-
-export const languages = [
-   { language: 'Eng', url: '/' },
-   { language: 'Jpn', url: '/ja' },
 ];

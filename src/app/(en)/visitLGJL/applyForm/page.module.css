@@ -32,6 +32,7 @@
    width: 200px;
    padding: 15px 20px;
    background-color: var(--color-LGred);
+   font-size: 1rem;
    color: var(--color-white);
    text-align: center;
    border: none;

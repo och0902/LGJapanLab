@@ -1,7 +1,7 @@
+import connectDB from '@/libs/connectDB';
+import Employees from '@/models/Employees';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import Users from '@/models/User';
-import connectDB from '@/libs/connectDB';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 
@@ -11,16 +11,17 @@ const handler = NextAuth ({
          async authorize( credentials ) {
             await connectDB().catch((error) => new NextResponse(error.message, { status: 500 }));
             try {
-               const user = await Users.findOne({ email: credentials.email });
-               const passwordMatched = await bcrypt.compare( credentials.password, user.password );
-               if ( !user ) {
-                  new NextResponse('user not found ...', { status: 500 });     
-               // } else if ( !user.admin ) {
+               const { name, email, password, _id } = await Employees.findOne({ email: credentials.email });
+               const userData = { name, email, password, _id };
+               const passwordMatched = await bcrypt.compare( credentials.password, userData.password );
+               if ( !userData ) {
+                  new NextResponse('user data not found ...', { status: 500 });     
+               // } else if ( !userData.admin ) {
                //    new NextResponse('not admin ...', { status: 500 });   
                } else if ( !passwordMatched ) {
                   new NextResponse('wrong credentials ...', { status: 500 });
                } else {
-                  return user;
+                  return userData;
                };
             } catch (error) {
                new NextResponse(error.message, { status: 500 }) ;
@@ -30,16 +31,17 @@ const handler = NextAuth ({
    ],
 
    callbacks: {
-      async jwt({ token, user }) {
+      async jwt ({ token, user }) {
          return { ...token, ...user };
       },
-      async session({ session, token }) {
+      async session ({ session, token }) {
          session.user = token;
          return session;
       },
    },
 
    secret: process.env.NEXTAUTH_SECRET,
+   
    session: {
       strategy: 'jwt',
       maxAge: 60 * 60 * 1,
@@ -53,14 +55,15 @@ const handler = NextAuth ({
 
 export { handler as GET, handler as POST };
 
+
 export async function PUT( request, { params } ) {
    const id = params.nextauth[0];
    const { name, email, newPassword } = await request.json();
-   // console.log(id, name, email, newPassword); 
-   const hashedNewPassword = await bcrypt.hash(newPassword, 5);
+   const userData = { name, email, newPassword };
+   const hashedNewPassword = await bcrypt.hash( userData.newPassword, 5 );
    await connectDB().catch((error) => new NextResponse(error.message, { status: 500 }));
    try {
-      await Users.findByIdAndUpdate(id, { name, email, password: hashedNewPassword });      
+      await Employees.findByIdAndUpdate(id, { name: userData.name, email: userData.email, password: hashedNewPassword });      
    } catch (error) {
       return new NextResponse(error.message, { status: 500 });      
    }

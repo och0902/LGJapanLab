@@ -33,9 +33,6 @@
       --font-normal: 14px;
       --font-small: 12px;
 
-      --weight-normal: 400;
-      --weight-bold: 500;
-
       --horizontal-basic: 5px;
    }
 }
@@ -44,6 +41,9 @@
    :root {
       --font-normal: 12px;
       --font-small: 10px;
+
+      --weight-normal: 400;
+      --weight-bold: 500;
    }
 }
 
@@ -81,7 +81,7 @@ a:hover {
 
 .globalContainer {
    max-width: var(--width-page);
-   min-height: calc( var(--height-page) - var(--height-nav) );
+   /* min-height: calc( var(--height-page)/2 - var(--height-nav) ); */
    margin: auto;
    margin-top: calc( var(--height-nav) - 20px );
    /* margin-bottom: 3dvh; */

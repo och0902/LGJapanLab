@@ -29,6 +29,7 @@ const SignIn = () => {
          } else {
             signIn( 'credentials', { email, password, redirect: false } )
             .then((callback) => {
+               console.log('callback: ', callback);
                if ( callback?.error ) { toast.error(callback.error); };
                if ( callback?.ok && !callback.error )  { 
                   toast.success('sign in successfully ...'); 
