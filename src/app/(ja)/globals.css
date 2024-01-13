@@ -6,13 +6,13 @@
    --outermost-x: 10px;
    --outermost-y: 10px;
 
-   --gap-basic: 100px;
+   --gap-basic: 150px;
 
    --font-normal: 16px;
    --font-small: 14px;
 
-   --weight-normal: 600;
-   --weight-bold: 700;
+   --weight-normal: 500;
+   --weight-bold: 600;
 
    --color-bg: #fff;
 
@@ -38,9 +38,6 @@
    :root {
       --font-normal: 12px;
       --font-small: 10px;
-
-      --weight-normal: 500;
-      --weight-bold: 600;
    }
 }
 
@@ -83,11 +80,17 @@ a:hover {
 
 .pageContainer {
    width: 100%;
-   margin: var(--height-nav) auto;
+   margin: auto;
    margin-top: calc(var(--height-nav)/2 - 10px);
+   margin-bottom: var(--gap-basic);
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
    gap: var(--gap-basic);
+}
+
+
+@media screen and (max-width: 600px) {
+
 }

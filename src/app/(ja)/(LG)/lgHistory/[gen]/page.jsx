@@ -7,7 +7,7 @@ import { ImageListItemBar, Grid, Box } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from '@emotion/react';
-import PageHero from '@/components/en/PageHero/PageHero';
+import PageHero from '@/components/ja/PageHero/PageHero';
 
 const LGHistory = ({ params }) => {
 
@@ -18,18 +18,19 @@ const LGHistory = ({ params }) => {
 
    return (
       <Box className='pageContainer'>
-         <PageHero image='/images/lg/lgHistory/LGHistory.png' aspectRatio='1920/400' title='LG ヒストリー'
+         <PageHero image='/images/lg/lgHistory/LGHistory.jpg' aspectRatio='1920/400' title='LGヒストリー'
             message1='LG, イノベーションと挑戦の歴史' />
-         <Box sx={{ width: '100%', mt: 'calc( -1*var(--gap-basic) )', mb: 'calc( var(--gap-basic)/2 )', pt: '30px', pl: '5%', 
+         <Box sx={{ width: '100%', mt: 'calc( -1*var(--gap-basic) )', pt: '30px', pl: '5%', 
             display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
             backgroundColor: 'var(--color-LGgray-light)',
-            [theme.breakpoints.down('md')] : {  mt: 'calc( -1*var(--gap-basic)/2 )', mb: 'calc( var(--gap-basic)/3 )', pl: '2%' } }}>
+            [theme.breakpoints.down('lg')] : {  mt: 'calc( -1*var(--gap-basic) )', mb: 'var(--gap-basic)', pl: '2%' } }}>
             { LGHistories.map((history, i) => (
                <Link key={i} href={'/lgHistory/'+(++i)} className={styles.genBtn} >
-                  <Box sx={{ width: '100%', height: '70px', [theme.breakpoints.down('lg')] : { height: '55px' }}}>
+                  <Box sx={{ width: '100%', height: '90px', 
+                     [theme.breakpoints.down('lg')] : { height: '60px' }, [theme.breakpoints.down('sm')] : { height: '45px' },  }}>
                      {history.generation == gen ? (
                         <React.Fragment>
-                           <Box sx={{ fontSize: '2rem', color: 'var(--color-LGred)',
+                           <Box sx={{ fontSize: '2rem', fontWeight: 'var(--weight-bold)', color: 'var(--color-LGred)',
                               [theme.breakpoints.down('lg')] : { fontSize: '1.5rem' }, [theme.breakpoints.down('sm')] : { fontSize: '1rem' },
                            }}>{history.period}</Box>
                            <Box sx={{ fontSize: '0.85rem', color: 'var(--color-LGred)',
@@ -38,7 +39,7 @@ const LGHistory = ({ params }) => {
                         </React.Fragment>
                      ) : (
                         <React.Fragment>
-                           <Box sx={{ fontSize: '2rem', 
+                           <Box sx={{ fontSize: '2rem', fontWeight: 'var(--weight-bold)',
                               [theme.breakpoints.down('lg')] : { fontSize: '1.5rem' }, [theme.breakpoints.down('sm')] : { fontSize: '1rem' },
                            }}>{history.period}</Box>
                            <Box sx={{ fontSize: '0.875rem', 
@@ -59,12 +60,12 @@ const LGHistory = ({ params }) => {
             ( genHistory.generation == gen && ( 
                <Box key={i} sx={{ width: '100%', m: 'auto' }}>
                   <Box sx={{ width: '80%', m: 'auto', textAlign: 'center', [theme.breakpoints.down('lg')] : { width: '100%' } }}>
-                     <Box sx={{ mb: '20px', fontSize: '1.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+                     <Box sx={{ mb: '20px', fontSize: '1.5rem', fontWeight: 'var(--weight-bold)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                         <Box> {genHistory.chairman} : </Box>
                         <Box sx={{ pl: '10px', color: 'var(--color-LGred)' }}>{genHistory.period}</Box>
                      </Box>
                      <Box sx={{ mb: '20px' }}>{genHistory.meaning}</Box>
-                     <Box sx={{ mb: '70px', fontSize: '2rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+                     <Box sx={{ mb: '70px', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                         <Box sx={{ color: 'var(--color-LGred)' }}>{genHistory.introTitle1}</Box>
                         <Box sx={{ pl: '10px',  color: 'var(--color-black)' }}> {genHistory.introTitle2}</Box>
                      </Box>
@@ -73,7 +74,7 @@ const LGHistory = ({ params }) => {
                      <Grid container sx={{ width: '80%', m: 'auto', p: '30px 0px', 
                         flexDirection: 'row', alignItems: 'center', color: 'var(--color-black)',
                         [theme.breakpoints.down('lg')] : { width: '100%' } }} >
-                        <Grid item xs={12} md={5} sx={{ px: '10px' }}>
+                        <Grid item xs={12} md={5} sx={{ px: '20px' }}>
                            <Grid container sx={{ pr: '10px', alignItems: 'center' }}>
                               {genHistory.imgs.map((img, j) => (
                                  <Grid item key={j} xs={4} sm={2} md={6} lg={6} xl={4} sx={{ p: '1px' }}>
@@ -85,7 +86,7 @@ const LGHistory = ({ params }) => {
                               ))}
                            </Grid>
                         </Grid>
-                        <Grid item xs={12} md={7} sx={{ px: '10px', py: '30px' }}>
+                        <Grid item xs={12} md={7} sx={{ px: '20px', py: '30px' }}>
                            {genHistory.events.map((history, j) => (
                               (history.selected === true) ? 
                                  (

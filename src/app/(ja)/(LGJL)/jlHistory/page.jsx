@@ -13,11 +13,11 @@ const JLHistoryMission = () => {
 
    return (
 		<Box className='pageContainer'>
-         <PageHero image='/images/lgjl/JLHistory.png' aspectRatio='1920/400' title='ヒストリー' message1='of LG japan Lab'/>
+         <PageHero image='/images/lgjl/JLHistory.jpg' aspectRatio='1920/400' title='ヒストリー' message1='of LG japan Lab'/>
 
          <Box sx={{ width: '100%', mt: 'calc( var(--gap-basic)/2 )' }}>
-            <Box sx={{ width: '80%', m: 'auto', mb: '2dvh', fontSize: '2rem', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
-               LG Japan Lab ヒストリー
+            <Box sx={{ width: '80%', m: 'auto', mb: '2dvh', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
+               LG Japan Labヒストリー
             </Box>
             <Box sx={{ width: '80%', m: 'auto', mb: '5dvh', lineHeight: '150%', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
                LGは1971年、家電·半導体など電子産業の先端技術を確保するためにゴールドスター東京リサーチオフィスを設立して以来、
@@ -33,10 +33,10 @@ const JLHistoryMission = () => {
                <Box sx={{ width: '100%', mb: '5dvh', display: 'flex', textAlign: 'center', gap: '2px' }}>
                   <Box sx={{ flex: 3, py: '15px', backgroundColor: 'var(--color-LGgray)', fontSize: '1.25rem', color: 'white',
                      [theme.breakpoints.down('sm')] : { fontSize: '1rem' }  }}>
-                     電子 系列</Box>
+                     電子系列</Box>
                   <Box sx={{ flex: 2, py: '15px', backgroundColor: 'var(--color-LGgray)', fontSize: '1.25rem', color: 'white',
                      [theme.breakpoints.down('sm')] : { fontSize: '1rem' } }}>
-                     化学 系列</Box>
+                     化学系列</Box>
                </Box>
                <Box sx={{ width: '100%', overflow: 'hidden' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
@@ -70,7 +70,7 @@ const JLHistoryMission = () => {
                      </tbody>
                   </table>
                </Box>
-               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: ' var(--color-bg-content)' }}>
+               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: 'var(--color-LGgray-light)' }}>
                   <Box sx={{ my: '15px', color: 'var(--color-LGred)', fontWeight: 'bolder' }}>2017.07 LG Japan Lab Inc.</Box>
                   <Box sx={{ my: '15px', fontSize: '1rem', color: 'var(--color-black)' }}>
                      Integrated corporation of five affiliated research institutes @Shinagawa Glass Cube
@@ -96,7 +96,7 @@ const JLHistoryMission = () => {
                   </table>
                </Box>
 
-               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: ' var(--color-bg-content)' }}>
+               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: 'var(--color-LGgray-light)' }}>
                   <Box sx={{ my: '15px', color: 'var(--color-LGred)', fontWeight: 'bolder' }}>2022.02 LG Japan Lab Inc.</Box>
                   <Box sx={{ my: '15px', fontSize: '1rem', color: 'var(--color-black)' }}>
                      Laboratory relocation @Yokohama Innovation Center

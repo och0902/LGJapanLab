@@ -26,7 +26,7 @@ const Company = () => {
                         <Box sx={{ width: '80%', m: 'auto', my: 'calc( var(--gap-basic)/2 )', 
                            display: 'flex', alignItems: 'end', gap: '20px',
                            [theme.breakpoints.down('lg')] : { width: '100%', px: '10px' } }}>
-                           <Box sx={{ fontSize: '2rem' }}>{company.name}</Box>
+                           <Box sx={{ fontSize: '2.5rem', fontWeight: 'var(--weight-bold)' }}>{company.name}</Box>
                            <Box>
                               <KeyboardDoubleArrowRightIcon sx={{ mb: '-6px' }}/> 会社のホームページへ
                            </Box>

@@ -17,7 +17,7 @@
 }
 
 .linkBox:hover {
-   border: 2px solid var(--color-white);
+   border: 3px solid var(--color-white);
    /* background-color: var(--color-LGred); */
 }
 

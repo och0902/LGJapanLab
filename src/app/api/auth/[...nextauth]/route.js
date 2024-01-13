@@ -1,5 +1,5 @@
 import connectDB from '@/libs/connectDB';
-import Employees from '@/models/Employees';
+import Admins from '@/models/Admins';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
@@ -9,22 +9,20 @@ const handler = NextAuth ({
    providers: [
       CredentialsProvider({
          async authorize( credentials ) {
-            await connectDB().catch((error) => new NextResponse(error.message, { status: 500 }));
             try {
-               const { name, email, password, _id } = await Employees.findOne({ email: credentials.email });
-               const userData = { name, email, password, _id };
+               await connectDB();
+               const userData = await Admins.findOne({ email: credentials.email });
                const passwordMatched = await bcrypt.compare( credentials.password, userData.password );
                if ( !userData ) {
-                  new NextResponse('user data not found ...', { status: 500 });     
-               // } else if ( !userData.admin ) {
-               //    new NextResponse('not admin ...', { status: 500 });   
+                  return NextResponse.json({ message: 'user data not found ...', status: 500 })  
                } else if ( !passwordMatched ) {
-                  new NextResponse('wrong credentials ...', { status: 500 });
+                  return NextResponse.json({ message: 'wrong credentials ...', status: 500 });
                } else {
                   return userData;
                };
             } catch (error) {
-               new NextResponse(error.message, { status: 500 }) ;
+               console.log(error);
+               return NextResponse.json({ message: error.message, status: 500 }) ;
             };
          },
       }),
@@ -48,7 +46,7 @@ const handler = NextAuth ({
    },
    
    pages: {
-      error: '/en',
+      error: '/signIn',
    },
    
 });
@@ -58,14 +56,15 @@ export { handler as GET, handler as POST };
 
 export async function PUT( request, { params } ) {
    const id = params.nextauth[0];
-   const { name, email, newPassword } = await request.json();
-   const userData = { name, email, newPassword };
+   const userData = await request.json();
    const hashedNewPassword = await bcrypt.hash( userData.newPassword, 5 );
-   await connectDB().catch((error) => new NextResponse(error.message, { status: 500 }));
+
    try {
-      await Employees.findByIdAndUpdate(id, { name: userData.name, email: userData.email, password: hashedNewPassword });      
+      await connectDB();
+      await Admins.findByIdAndUpdate(id, { name: userData.name, email: userData.email, password: hashedNewPassword });      
    } catch (error) {
-      return new NextResponse(error.message, { status: 500 });      
+      console.log(error);
+      return NextResponse.json({ message: error.message, status: 500 }) ;   
    }
-   return NextResponse.json({ message: 'password updated ...'}, { status: 200 });
+   return NextResponse.json({ message: 'password updated ...', status: 200 });
 };

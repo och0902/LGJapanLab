@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 
-const careersSchema = new mongoose.Schema({
+const applicantInfoSchema = new mongoose.Schema({
    name: { type: String, required: [true, 'name is required ...'] },
+   nameKana: { type: String, },
    email: { type: String, required: [true, 'email is required ...'] },
    mobile: { type: String, required: [true, 'mobile phone number is required ...'] },
-   position: { type: String, required: [true, 'position is required ...'] },
+   recruitmentJob: { type: String, required: [true, 'recruitment job is required ...'] },
    files: { type: Array, required: [true,'file paths are required ...'] },
    otherMatters: { type: String },
    privacyCheck: { type: Boolean , default: true },
@@ -12,6 +13,6 @@ const careersSchema = new mongoose.Schema({
    }, { timestamps: true }
 ); 
 
-const Careers = mongoose.models.Careers || mongoose.model('Careers', careersSchema);
+const ApplicantInfos = mongoose.models.ApplicantInfos || mongoose.model('ApplicantInfos', applicantInfoSchema);
 
-export default Careers;
+export default ApplicantInfos;

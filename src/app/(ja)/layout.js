@@ -1,11 +1,11 @@
 import './globals.css';
-import localFont from 'next/font/local';
+import { M_PLUS_2 } from 'next/font/google';
 import ContextProvider from '@/context/ContextProvider';
 import Navbar from '@/components/ja/Navbar/Navbar';
 import Footer from '@/components/ja/Footer/Footer';
 import { Box } from '@mui/material';
 
-const local = localFont({ src: './MPLUS1p-Regular.ttf' });
+const mPlus2 = M_PLUS_2({ subsets: ['latin'] });
 
 export const metadata = {
    title: 'LG Japan Lab Inc.',
@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
    return (
       <html lang='ja'>
-         <body className={local.className}>
+         <body className={mPlus2.className}>
             <ContextProvider>
                <Box className='globalContainer'>
                   <Navbar />

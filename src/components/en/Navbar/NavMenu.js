@@ -2,7 +2,7 @@ export const links = [
    {  title: 'LG',
       subLinks: [
          { title: 'LG History', url: '/en/lgHistory/0' },
-         { title: 'CI & LG way', url: '/en/ci&LgWay' }, 
+         { title: 'CI & LG Way', url: '/en/ci&LgWay' }, 
          { title: 'Affiliated Companies', url: '/en/affiliated' },
          { title: 'LG Products', url: '/en/lgProduct' }
       ],

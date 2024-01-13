@@ -17,7 +17,7 @@ const JLKeyResearch = () => {
 
 	return (
 		<Box className='pageContainer'>
-         <PageHero image='/images/lgjl/keyResearch/KeyResearch.png' aspectRatio='1920/400' title='Key Research Issue' />
+         <PageHero image='/images/lgjl/keyResearch/KeyResearch.jpg' aspectRatio='1920/400' title='Key Research Issue' />
 			
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ width: '80%', m: 'auto', display: 'flex', justifyContent: 'center', 
@@ -30,7 +30,7 @@ const JLKeyResearch = () => {
 					</Box>
 				</Box>
 				
-				<Box sx={{ width: '80%', m: 'auto', fontSize: '2rem', 
+				<Box sx={{ width: '80%', m: 'auto', fontSize: '2.5rem', 
 					[theme.breakpoints.down('lg')]: { width: '100%', px: '5px', fontSize: '1.5rem' } }}>Motivation & Research Issue</Box>
 
 				<Box sx={{ width: '80%', m: 'auto', mt: '10px', lineHeight: '150%',
@@ -53,7 +53,7 @@ const JLKeyResearch = () => {
 								{SDG.map((sdg, i) => (
 									<Grid key={i} item xs={2} sm={12/9} sx={{ p: '3px' }}>
 										<Box sx={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden' }}>
-											<Image src={`/images/lgjl/keyResearch/SDGoal${sdg}.png`} fill sizes='100%' className={styles.thumbnail} alt='Sustainable Development Goal' />
+											<Image src={`/images/lgjl/keyResearch/SDGoal${sdg}.jpg`} fill sizes='100%' className={styles.thumbnail} alt='Sustainable Development Goal' />
 										</Box>
 									</Grid>
 								))}
@@ -93,7 +93,7 @@ const JLKeyResearch = () => {
 							<Link href='https://www.bp.com/content/dam/bp/business-sites/en/global/corporate/pdfs/energy-economics/energy-outlook/bp-energy-outlook-2022.pdf'
 								target='_blank' >						
 								<Box sx={{ width: '100%', aspectRatio: '800/397', position: 'relative' }}>
-									<Image src='/images/lgjl/keyResearch/CO2ReductionScenario.png' fill sizes='100%' alt='CO2 Reduction Scenario' />
+									<Image src='/images/lgjl/keyResearch/CO2ReductionScenario.jpg' fill sizes='100%' alt='CO2 Reduction Scenario' />
 								</Box>
 							</Link>
 							<Box sx={{ width: '100%', m: 'auto', mt: '10px', textAlign: 'center', fontSize: '0.75rem',
@@ -124,7 +124,7 @@ const JLKeyResearch = () => {
 							<Link href='https://www.bp.com/content/dam/bp/business-sites/en/global/corporate/pdfs/energy-economics/energy-outlook/bp-energy-outlook-2022.pdf'
 								target='_blank' >
 								<Box sx={{ width: '100%', aspectRatio: '850/420', position: 'relative' }}>
-									<Image src='/images/lgjl/keyResearch/EnergyShare.png' fill sizes='100%' alt='Energy Share' />
+									<Image src='/images/lgjl/keyResearch/EnergyShare.jpg' fill sizes='100%' alt='Energy Share' />
 								</Box>
 							</Link>
 							<Box sx={{ width: '100%', m: 'auto', mt: '10px', textAlign: 'center', fontSize: '0.75rem',
@@ -167,14 +167,14 @@ const JLKeyResearch = () => {
 						<Box sx={{ width: '80%', m: 'auto', mt: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 							<Box sx={{ display: 'flex', gap: '30px', [theme.breakpoints.down('lg')] : { gap : '10px' } }}>
 								<Box sx={{ width: '100px', aspectRatio: '1/1', position: 'relative',  [theme.breakpoints.down('lg')] : { width: '60px' } }}>
-									<Image src='/images/lgjl/keyResearch/SDGoal_13.png' fill sizes='100%' alt='Sustainable Development Goal' />
+									<Image src='/images/lgjl/keyResearch/SDGoal_13.jpg' fill sizes='100%' alt='Sustainable Development Goal' />
 								</Box>
 								<Box sx={{ width: '1px', borderRight: '1px solid var(--color-LGgray-light)' }}></Box>
 								<Box sx={{ height: '80px', aspectRatio: '851/293', position: 'relative', [theme.breakpoints.down('lg')] : { height: '50px' } }}>
 									<Image src='/images/LGJapanLabInc.png' fill sizes='100%' alt='LG Japan Lab' />
 								</Box>
 								<Box sx={{ width: '1px', borderRight: '1px solid var(--color-LGgray-light)' }}></Box>
-								<Box sx={{ fontSize: '2rem', color: 'green', display: 'flex', alignItems: 'center',
+								<Box sx={{ fontSize: '2.5rem', color: 'green', display: 'flex', alignItems: 'center',
 									[theme.breakpoints.down('md')] : { fontSize: '1.5rem' } }} >
 									Hydrogen
 								</Box>

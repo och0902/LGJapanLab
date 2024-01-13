@@ -12,24 +12,24 @@ const Visit = () => {
 
    const theme = useTheme();
 
-   const applicationProcess = [ '申し込み', '承認', '訪問' ];
+   const applicationProcess = [ '申請', '承認', '訪問' ];
 
    return (
       <Box className='pageContainer' >
          <Box sx={{ width: '100%', aspectRatio: '1920/800', position: 'relative',
             [theme.breakpoints.down('md')] : { width: '150%' },
             [theme.breakpoints.down('sm')] : { width: '200%' }, }} >
-            <Image src={'/images/lgjl/visit/visit.png'} priority='high' fill sizes='100%' alt='visit application' />
+            <Image src={'/images/lgjl/visit/visit.jpg'} priority='high' fill sizes='100%' alt='visit application' />
          </Box>
          
-         <Box sx={{ position: 'absolute', width: '80%', m: 'auto', color: 'var(--color-white)', display: 'flex', justifyContent: 'space-between',
+         <Box sx={{ position: 'absolute', maxWidth: 'calc(1920px * 0.8)', width: '80%', m: 'auto', color: 'var(--color-white)', display: 'flex', justifyContent: 'space-between',
             [theme.breakpoints.down('lg')] : { width: '100%', pr: '50px' },
             [theme.breakpoints.down('md')] : { flexDirection: 'column', px: '25px' } }}>
             <Box sx={{ flexBasis: '50%', mb: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-               <Box sx={{ mb: '70px', fontSize: '4rem', textShadow: '5px 5px 5px var(--color-LGgray)',
+               <Box sx={{ mb: '70px', fontSize: '4rem', fontWeight: 'var(--weight-bold)', textShadow: '5px 5px 5px var(--color-LGgray)',
                   [theme.breakpoints.down('md')] : { mb: '10px', fontSize: '3rem' },
                   [theme.breakpoints.down('sm')] : { fontSize: '2rem' } }}>
-                  <Box>訪問 申し込み</Box>
+                  <Box>訪問申請</Box>
                </Box>
                <Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem'} }}>
                   LG系列会社の職員を対象にした訪問申請です。
@@ -55,25 +55,25 @@ const Visit = () => {
             <Box sx={{ flexBasis: '45%', display: 'flex', justifyContent: 'space-between' }}>
                <Link href={'/visit/apply'} className={styles.link} style={{ flexBasis: '48%' }}>
                   <Box className={styles.linkBox} 
-                     sx={{ backgroundColor: 'var(--color-LGred)', border: '2px solid var(--color-LGred)' }}>
+                     sx={{ backgroundColor: 'var(--color-LGred)', border: '3px solid var(--color-LGred)' }}>
                      <Box sx={{ width: '25%', aspectRatio: '1/1', position: 'relative', 
                         [theme.breakpoints.down('md')] : { width: '10%' } }}>
                         <Image src={'/images/lgjl/visit/apply.png'} fill sizes='100%' alt='apply' />
                      </Box>
-                     <Box sx={{ fontSize: '1.2rem', [theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>
-                        訪問 申し込み
+                     <Box sx={{ fontSize: '1.2rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>
+                        訪問申請
                      </Box>
                   </Box>
                </Link>
                <Link href={'/visit/inquiry'} className={styles.link} style={{ flexBasis: '48%' }}>
                   <Box className={styles.linkBox} 
-                     sx={{ backgroundColor: 'var(--color-LGgray)', border: '2px solid var(--color-LGgray)' }}>
+                     sx={{ backgroundColor: 'var(--color-LGgray)', border: '3px solid var(--color-LGgray)' }}>
                      <Box sx={{ width: '25%', aspectRatio: '1/1', position: 'relative',
                         [theme.breakpoints.down('md')] : { width: '10%' }  }}>
                         <Image src={'/images/lgjl/visit/inquiry.png'} fill sizes='100%' alt='inquiry' />
                      </Box>
-                     <Box sx={{ fontSize: '1.2rem', [theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>
-                        申し込み 状況
+                     <Box sx={{ fontSize: '1.2rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>
+                        申請状況
                      </Box>
                   </Box>
                </Link>

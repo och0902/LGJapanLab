@@ -20,7 +20,7 @@ const VisitApplySuccess = () => {
    return (
       <Box className='pageContainer' onClick={handleClick} >
          <Box sx={{  width: '100px', mt: 'var(--gap-basic)', aspectRatio: '1/1', position: 'relative' }}>
-            <Image src='/images/lgjl/visit/success.png' fill sizes='100%' alt='success' />
+            <Image src='/images/lgjl/visit/success.jpg' fill sizes='100%' alt='success' />
          </Box>
          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
             <Box sx={{ fontSize: '1.5rem' }}>

@@ -23,31 +23,36 @@ const RecruitInquiry = () => {
 		e.preventDefault();
 
 		if ( !applicant.name || !applicant.email ) {
-         toast.error('please enter name and email address ...');
+         toast.error('Please enter name and email address.');
       } else {
 			if(!isSaving) {
 				setIsSaving(true);
 				try {
 					const params = { name: applicant.name, email: applicant.email };
 					const queryParams = new URLSearchParams(params);
-					const url = `/en/api/careers?${queryParams}`;
+					const url = `/api/careers?${queryParams}`;
 					fetch(url, {
 						method: 'GET',
 						cache: 'no-store',
 					}).then ((response) => {
 						// console.log(response);
-						if( response.ok ) return response.json();
+						if( !response.ok ) {
+							console.log(response.message);
+							toast.error('An error occurred during data processing.');
+						} else {
+							return response.json();
+						};
 					}).then ((result) => {
 						// console.log(result);
-						if( result.message && result.message === 'success' ) {
-							// toast.success('Your request for a visit has been successfully found ...');
+						if ( result.message && result.message === 'success' ) {
+							// toast.success( 'Requested applicant for a recruitment has been successfully found ...' );
 							setApplicantInfo(result._doc);
 							setApplicantInfoArr(Object.entries(result._doc).slice(1,-3));
 							session.applicantInfo = result._doc;
 							setIsSaving(false);
 						} else {
-							toast.error('Your request for a recruitment has not been found ...');
-							// router.push('/visit');
+							toast.error('Requested applicant for a recruitment has not been found.');
+							setIsSaving(false);
 						};
 					});
 				} catch (error) {
@@ -61,7 +66,7 @@ const RecruitInquiry = () => {
       <Box className='pageContainer'>
 
          <form style={{ width: '100%' }} onSubmit={handleSubmit}>
-				<Box sx={{ width: '100%', py: '25px', fontSize: '2rem', textAlign: 'center', 
+				<Box sx={{ width: '100%', py: '25px', fontSize: '2.5rem', textAlign: 'center', 
 					color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)',
 					[theme.breakpoints.down('md')] : { mt: 'calc( var(--gap-basic)/3 )' } }}>
 					Recruitment Application Inquiry

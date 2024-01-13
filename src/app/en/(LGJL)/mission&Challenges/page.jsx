@@ -12,7 +12,7 @@ const JLHistoryMission = () => {
 
    return (
 		<Box className='pageContainer'>
-         <PageHero image='/images/lgjl/mission&Challenges/Mission&Challenges.png' aspectRatio='1920/400' title='Mission, R&D Challenges' />
+         <PageHero image='/images/lgjl/mission&Challenges/Mission&Challenges.jpg' aspectRatio='1920/400' title='Mission, R&D Challenges' />
 
          <Box sx={{ width: '100%' }}>
 
@@ -26,7 +26,7 @@ const JLHistoryMission = () => {
 
             <Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)/3 )', 
                [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
-               <Box sx={{ fontSize: '2rem', mb: '1dvh' }}>Mission Statement</Box>
+               <Box sx={{ fontSize: '2.5rem', mb: '1dvh' }}>Mission Statement</Box>
                <Box sx={{ fontSize: '1rem', lineHeight: '150%' }}>
                   Through early detection, verification and securing of Japan&apos;s strengths in technology (materials/parts, etc.), 
                   LG Japan Laboratory will contribute the improvement of business competitiveness and competence preparation 
@@ -34,7 +34,7 @@ const JLHistoryMission = () => {
                </Box>
             </Box>
             
-            <Box sx={{ width: '80%', m: 'auto', mt: 'var(--gap-basic)', fontSize: '2rem', color: 'var(--color-LGred)',
+            <Box sx={{ width: '80%', m: 'auto', mt: 'var(--gap-basic)', fontSize: '2.5rem', color: 'var(--color-LGred)',
                [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
                R&D Fields
             </Box>
@@ -52,7 +52,7 @@ const JLHistoryMission = () => {
                <Box sx={{ flexBasis: '50%' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                      <Box sx={{ mt: '20px', px: '20px', fontSize: '1.5rem', color: 'var(--color-black)' }}>Electronics Field</Box>
-                     <Image src='/images/lgjl/mission&Challenges/electrons.png' width={30} height={30} style={{ marginBottom: '-10px' }} alt='electons' />
+                     <Image src='/images/lgjl/mission&Challenges/electrons.jpg' width={30} height={30} style={{ marginBottom: '-10px' }} alt='electons' />
                   </Box>
                   <Box sx={{ height: '100%', p: '20px', color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)', 
                      borderRadius: '40px', boxShadow: '0 4px 4px var(--color-LGgray)',
@@ -76,7 +76,7 @@ const JLHistoryMission = () => {
                <Box sx={{ flexBasis: '50%' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                      <Box sx={{ mt: '20px', px: '20px', fontSize: '1.5rem', color: 'var(--color-black)' }}>Chemical Field</Box>
-                     <Image src='/images/lgjl/mission&Challenges/chemical.png' width={30} height={30} alt='chemical' />
+                     <Image src='/images/lgjl/mission&Challenges/chemical.jpg' width={30} height={30} alt='chemical' />
                   </Box>
                   <Box sx={{ height: '100%', p: '20px', color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)', 
                      borderRadius: '40px', boxShadow: '0 4px 4px var(--color-LGgray)',
@@ -90,7 +90,7 @@ const JLHistoryMission = () => {
                </Box>
             </Box>
 
-            <Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)*1.5 ) ', fontSize: '2rem', color: 'var(--color-LGred)', 
+            <Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)*1.5 ) ', fontSize: '2.5rem', color: 'var(--color-LGred)', 
                [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
                Open Innovation
             </Box>
@@ -108,7 +108,7 @@ const JLHistoryMission = () => {
 
                <Box sx={{ width: '80%', m: 'auto', mt: '30px', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
                   <Box sx={{ color: 'var(--color-black)' }}>
-                     <Box sx={{ fontSize: '1.5rem' }}>Technology Center Japan</Box>
+                     <Box sx={{ fontSize: '1.5rem', fontWeight: 'var(--weight-bold)' }}>Technology Center Japan</Box>
                      <Box sx={{ fontSize: '1.2rem' }}>(TCJ, Organization dedicated to Open Innovation)</Box>
                   </Box>
                </Box>

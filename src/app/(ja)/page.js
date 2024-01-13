@@ -27,7 +27,8 @@ const Root = () =>  {
       <Box className='pageContainer'>
          <video src={videos[currentVideo]} width='100%' priority='high' autoPlay muted preload='auto' suppressHydrationWarning onEnded={handleVideoEnd} />
          <Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')] : { width: '100%'} }}>
-            <Box sx={{ mb: '10px', fontSize: '2.5rem', [theme.breakpoints.down('md')] : { fontSize: '2rem' } }}>メディア</Box>
+            <Box sx={{ mb: '10px', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', 
+               [theme.breakpoints.down('md')] : { fontSize: '2rem' } }}>メディア</Box>
             <Grid container>
                { mediaList.map((media, i) => (
                   <Grid key={i} item xs={6} sm={6} md={3} sx={{ p: '3px' }}>
@@ -47,7 +48,8 @@ const Root = () =>  {
          </Box>
 
          <Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')] : { width: '100%'} }}>
-            <Box sx={{ mb: '10px', fontSize: '2.5rem',  [theme.breakpoints.down('md')] : { fontSize: '2rem' } }}>LGグループ チャンネル</Box>
+            <Box sx={{ mb: '10px', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', 
+               [theme.breakpoints.down('md')] : { fontSize: '2rem' } }}>LGグループ チャンネル</Box>
             <Grid container>
                { relatedList.map((related, i) => (
                   <Grid key={i} item xs={6} sm={6} md={4} sx={{ p: '3px' }}>

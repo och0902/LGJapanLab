@@ -19,16 +19,16 @@ const Visit = () => {
          <Box sx={{ width: '100%', aspectRatio: '1920/800', position: 'relative',
             [theme.breakpoints.down('md')] : { width: '150%' },
             [theme.breakpoints.down('sm')] : { width: '200%' }, }} >
-            <Image src={'/images/lgjl/visit/visit.png'} priority='high' fill sizes='100%' alt='visit application' />
+            <Image src={'/images/lgjl/visit/visit.jpg'} priority='high' fill sizes='100%' alt='visit application' />
          </Box>
          
-         <Box sx={{ position: 'absolute', width: '80%', m: 'auto', color: 'var(--color-white)', display: 'flex', justifyContent: 'space-between',
+         <Box sx={{ position: 'absolute', maxWidth: 'calc(1920px * 0.8)', width: '80%', m: 'auto', color: 'var(--color-white)', display: 'flex', justifyContent: 'space-between',
             [theme.breakpoints.down('lg')] : { width: '100%', pr: '50px' },
             [theme.breakpoints.down('md')] : { flexDirection: 'column', px: '25px' } }}>
             <Box sx={{ flexBasis: '50%', mb: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                <Box sx={{ mb: '70px', fontSize: '3rem', textShadow: '5px 5px 5px var(--color-LGgray)',
                   [theme.breakpoints.down('md')] : { mb: '10px', fontSize: '2.5rem' }, 
-                  [theme.breakpoints.down('sm')] : { fontSize: '2rem' } }}>
+                  [theme.breakpoints.down('sm')] : { fontSize: '2.5rem' } }}>
                   <Box>Visiting Appliction</Box>
                </Box>
                <Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem'} }}>

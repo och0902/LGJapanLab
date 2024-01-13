@@ -18,15 +18,16 @@ const LGHistory = ({ params }) => {
 
    return (
       <Box className='pageContainer'>
-         <PageHero image='/images/lg/lgHistory/LGHistory.png' aspectRatio='1920/400' title='LG History'
+         <PageHero image='/images/lg/lgHistory/LGHistory.jpg' aspectRatio='1920/400' title='LG History'
             message1='LG, A tale of challenge and ceaseless innovation' />
-         <Box sx={{ width: '100%', mt: 'calc( -1*var(--gap-basic) )', mb: 'calc( var(--gap-basic)/2 )', pt: '30px', pl: '5%', 
+         <Box sx={{ width: '100%', mt: 'calc( -1*var(--gap-basic) )', pt: '30px', pl: '5%', 
             display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
             backgroundColor: 'var(--color-LGgray-light)',
-            [theme.breakpoints.down('md')] : {  mt: 'calc( -1*var(--gap-basic)/2 )', mb: 'calc( var(--gap-basic)/3 )', pl: '2%' } }}>
+            [theme.breakpoints.down('lg')] : {  mt: 'calc( -1*var(--gap-basic) )', mb: 'var(--gap-basic)', pl: '2%' } }}>
             { LGHistories.map((history, i) => (
                <Link key={i} href={'/en/lgHistory/'+(++i)} className={styles.genBtn} >
-                  <Box sx={{ width: '100%', height: '70px', [theme.breakpoints.down('lg')] : { height: '55px' }}}>
+                  <Box sx={{ width: '100%', height: '90px', 
+                     [theme.breakpoints.down('lg')] : { height: '60px' }, [theme.breakpoints.down('sm')] : { height: '45px' },  }}>
                      {history.generation == gen ? (
                         <React.Fragment>
                            <Box sx={{ fontSize: '2rem', color: 'var(--color-LGred)',

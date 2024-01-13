@@ -15,14 +15,16 @@ const Careers= () => {
 
 	return (
 		<Box className='pageContainer'>
-			<PageHero image='/images/careers/Careers.png' aspectRatio='1920/600' title='Job Postings'
+			<PageHero image='/images/careers/Careers.jpg' aspectRatio='1920/600' title='Job Postings'
 				message1='Future value created together' />
 
 			{jobPostings.map((jobPosting, i) => (
 				<Box key={i} sx={{ width: '100%' }}>
 					<Box sx={{ width: '80%', m: 'auto',	display: 'flex', justifyContent: 'space-between', alignItems: 'center',
 						[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-						<Box sx={{ fontSize: '2rem', color: 'var(--color-LGred)', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>{jobPosting.title}</Box>
+						<Box sx={{ fontSize: '2.5rem', color: 'var(--color-LGred)', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>
+							{jobPosting.title}
+						</Box>
 					</Box>
 
 					<Box sx={{ width: '100%', mt: '10px', display: 'flex', gap: '20px', backgroundColor: 'var(--color-LGgray-light)' }}>
@@ -39,7 +41,8 @@ const Careers= () => {
 											</Box>
 											<Box sx={{ px: '5px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 												<Box>
-													<Box sx={{ fontSize: '1.25rem', [theme.breakpoints.down('sm')] : { fontSize: '1.1rem' } }}>{job.recruitmentJob}</Box>
+													<Box sx={{ fontSize: '1.5rem', fontWeight: 'var(--weight-bold)',
+														[theme.breakpoints.down('sm')] : { fontSize: '1.1rem' } }}>{job.recruitmentJob}</Box>
 													<Box sx={{ mt: '10px', [theme.breakpoints.down('sm')] : { fontSize: '0.85rem' } }}>{job.desc}</Box>
 												</Box>
 												<ArrowForwardIosIcon sx={{ fontSize: '2rem',[theme.breakpoints.down('sm')] : { fontSize: '1.75rem' } }} />
@@ -57,7 +60,7 @@ const Careers= () => {
 			))}
 			
 			<Box sx={{ width: '300px' }}>
-				<Link href='/recruit' className={styles.buttonRed}>
+				<Link href='/en/recruit' className={styles.buttonRed}>
 					<Box sx={{ p: '10px 20px', backgroundColor: 'var(--color-LGred)', color: 'var(--color-white)',  
 						textAlign: 'center',	borderRadius: '26px', boxShadow: '3px 3px 3px var(--color-LGgray)' }}>Recruitment Application</Box>
 				</Link>

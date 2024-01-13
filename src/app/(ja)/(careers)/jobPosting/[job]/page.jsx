@@ -20,13 +20,15 @@ const JobDetail = ({ params }) => {
 
             <Box sx={{ width: '80%', m: 'auto',	display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                [theme.breakpoints.down('lg')]: { width: '100%' } }}>
-               <Box sx={{ fontSize: '2rem', color: 'var(--color-LGred)', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>採用情報</Box>
+               <Box sx={{ fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', color: 'var(--color-LGred)', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>
+                  募集職種
+               </Box>
                <Link href='/recruit' className={styles.buttonRed}>
                   <Box sx={{ p: '10px 20px', backgroundColor: 'var(--color-LGred)', color: 'var(--color-white)',  
-                     textAlign: 'center',	borderRadius: '26px', boxShadow: '3px 3px 3px var(--color-LGgray)' }}>採用 申し込み</Box>
+                     textAlign: 'center',	borderRadius: '26px', boxShadow: '3px 3px 3px var(--color-LGgray)' }}>エントリー</Box>
                </Link>
             </Box>
-
+            
             <Box sx={{ width: '100%', mt: '10px', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
                <Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
                   { jobPostings.map((jobPosting, i) => ( jobPosting.type === type && (

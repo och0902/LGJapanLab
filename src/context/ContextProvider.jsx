@@ -19,7 +19,7 @@ const ContextProvider = ({ children }) => {
    return (
       <SessionProvider>
          <ThemeProvider theme={ customTheme }>
-            <Toaster />
+            <Toaster toastOptions={{ duration: 5000 }} />
             { children } 
          </ThemeProvider>
       </SessionProvider>

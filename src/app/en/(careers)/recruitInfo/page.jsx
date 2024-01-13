@@ -8,7 +8,6 @@ import { useTheme } from '@emotion/react';
 import { videos, weAre, aboutRND, specialties, recruitmentFields, employeesWelfare } from './recruitInfo';
 import Link from 'next/link';
 import Image from 'next/image';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const Careers= () => {
 
@@ -24,33 +23,29 @@ const Careers= () => {
 					display: 'flex', alignItems: 'center', gap: '50px',
 					[theme.breakpoints.down('md')] : { height: '30%', px: '10px', gap: '20px', }, [theme.breakpoints.down('sm')] : { height: '35%' } }}>
 					<Box sx={{ color: 'var(--color-black)' }} >
-						<Box sx={{ my: '10px', fontSize: '1.5rem', [theme.breakpoints.down('md')] : { my: '5px', fontSize: '1.2rem'} }}>
+						<Box sx={{ my: '10px', fontSize: '1.5rem', [theme.breakpoints.down('md')] : { my: '5px', fontSize: '0.8rem'} }}>
 							Now, 5 Job Postings are Open.
 						</Box>
-						<Box sx={{ my: '10px', [theme.breakpoints.down('md')] : { my: '5px' } }}>
+						<Box sx={{ my: '10px', [theme.breakpoints.down('md')] : { my: '5px', fontSize: '0.8rem' } }}>
 							including 4 Career Postings
 						</Box>
 					</Box>
-					<Box sx={{ p: '10px 20px', backgroundColor: 'var(--color-LGred)', color: 'var(--color-white)', 
-						borderRadius: '26px', boxShadow: '3px 3px 3px var(--color-LGgray)', 
-						[theme.breakpoints.down('md')] : { p: '5px 10px' } }}>
-						<Link href='/en/jobPosting' className={styles.buttonRed}>Job Posting</Link>
-					</Box>
+					<Link href='/en/jobPosting' className={styles.buttonRed}>Job Posting</Link>
 				</Box>
 			</Box>
 
 			<Box sx={{ width: '80%', m: 'auto', fontSize: '1.25rem', textAlign: 'center', color: 'var(--color-black)', 
 				[theme.breakpoints.down('md')] : { width: '100%' }, [theme.breakpoints.down(450)] : { fontSize: '1rem'} }}>
 				<Box>LG Japan Lab is</Box>
-				<Box sx={{ fontSize: '2rem', color: 'var(--color-LGred)',
-					[theme.breakpoints.down('sm')] : { fontSize: '1.75rem' }, [theme.breakpoints.down(450)] : { fontSize: '1.25rem'}  }}>
+				<Box sx={{ fontSize: '2.5rem', color: 'var(--color-LGred)', [theme.breakpoints.down('lg')] : { fontSize: '2.2rem' },
+					[theme.breakpoints.down('md')] : { fontSize: '1.75rem' }, [theme.breakpoints.down(450)] : { fontSize: '1.25rem'}  }}>
 					<i>recruiting autonomous and creative talents</i>
 				</Box>
 				<Box>who will create a clear and bright future together.</Box>
 			</Box>
 
 			<Box sx={{ width: '100%' }}>
-				<Box sx={{ width: '80%', m: 'auto', fontSize: '2rem', 
+				<Box sx={{ width: '80%', m: 'auto', fontSize: '2.5rem', 
 					[theme.breakpoints.down('md')]: { fontSize: '1.75rem' },
 					[theme.breakpoints.down('lg')]: { width: '100%' } }}>We are</Box>
 				<Box sx={{ width: '100%', py: '10px', display: 'flex', flexDirection: 'column', gap: '20px', backgroundColor: 'var(--color-LGgray-light)' }}>
@@ -58,8 +53,8 @@ const Careers= () => {
 						<Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', color: 'var(--color-black)' }}>
 							{ weAre.map((policy, i) => (
 								<Box key={i}>
-									<Box sx={{ fontSize: '1.5rem' }}>{policy.policy}</Box>
-									<Box>{policy.desc}</Box>
+									<Box sx={{ fontSize: '1.25rem' }}>{policy.policy}</Box>
+									<Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>{policy.desc}</Box>
 								</Box>
 							))}
 						</Box>
@@ -69,7 +64,7 @@ const Careers= () => {
 						<Box sx={{ fontSize: '1.25rem', m: '20px' }}>About research & development works</Box>
 						<Box sx={{ mb: '20px', px: '10px' }} >
 							{ aboutRND.map((about, i) => (
-								<Box key={i}>{about}</Box>
+								<Box key={i} sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>{about}</Box>
 							))}
 						</Box>
 					</Box>  		
@@ -93,7 +88,7 @@ const Careers= () => {
 
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ width: '80%', m: 'auto',	[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-					<Box sx={{ fontSize: '2rem', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>Growth Path</Box>
+					<Box sx={{ fontSize: '2.5rem', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>Growth Path</Box>
 				</Box>
 
 				<Box sx={{ width: '80%', m: 'auto', mt: '10px', py: '10px', display: 'flex', flexDirection: 'column', gap: '40px', color: 'var(--color-black)',
@@ -116,8 +111,10 @@ const Careers= () => {
 							</Box>
 						</Box>
 						<Box sx={{ flexBasis: '45%', width: '100%', p: '10px', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
-							<Box sx={{ fontSize: '1.5rem', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>Researcher Position</Box>
-							<Box>Depending on your capabilities, you grow from a researcher to a senior researcher.</Box>
+							<Box sx={{ mb: '10px', fontSize: '1.5rem', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>Researcher Position</Box>
+							<Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>
+								Depending on your capabilities, you grow from a researcher to a senior researcher.
+							</Box>
 						</Box>
 					</Box>
 					<Box sx={{ display: 'flex', alignItems: 'center', gap: '50px', 
@@ -138,8 +135,10 @@ const Careers= () => {
 							</Box>
 						</Box>
 						<Box sx={{ flexBasis: '45%', width: '100%', p: '10px', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
-							<Box sx={{ fontSize: '1.5rem', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>Management Position</Box>
-							<Box>In LG Japan Lab, team (project) leaders basically carry out personnel and budget management with a lot of authority, and talented people who have leadership capabilities and meet their personal vision grow into team (project) leaders.</Box>
+							<Box sx={{ mb: '10px', fontSize: '1.5rem', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>Management Position</Box>
+							<Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>
+								In LG Japan Lab, team (project) leaders basically carry out personnel and budget management with a lot of authority, and talented people who have leadership capabilities and meet their personal vision grow into team (project) leaders.
+							</Box>
 						</Box>
 					</Box>
 				</Box>
@@ -148,11 +147,8 @@ const Careers= () => {
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ width: '80%', m: 'auto',	display: 'flex', justifyContent: 'space-between', alignItems: 'center',
 					[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-					<Box sx={{ fontSize: '2rem', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>Field of Recruitment</Box>
-					<Link href='/jobPosting' className={styles.buttonRed}>
-						<Box sx={{ p: '10px 20px', backgroundColor: 'var(--color-LGred)', color: 'var(--color-white)', 
-							borderRadius: '26px', boxShadow: '3px 3px 3px var(--color-LGgray)' }}>Job Posting</Box>
-					</Link>
+					<Box sx={{ fontSize: '2.5rem', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>Field of Recruitment</Box>
+					<Link href='/en/jobPosting' className={styles.buttonRed}>Job Posting</Link>
 				</Box>
 
 				{recruitmentFields.map((field, i) => (
@@ -160,7 +156,8 @@ const Careers= () => {
 						<Box sx={{ width: '80%', m: 'auto', display: 'flex', alignItems: 'center', gap: '20px',
 							borderBottom: '1px solid var(--color-LGred)',
 							[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-							<Box sx={{ mt: '5px', fontSize: '1.5rem', color: 'var(--color-LGred)' }}>
+							<Box sx={{ mt: '5px', fontSize: '1.5rem', color: 'var(--color-LGred)',
+								[theme.breakpoints.down('sm')] : { fontSize: '1.2rem' } }}>
 								{field.researchArea}
 							</Box>
 							<Image src={field.url} width={30} height={30} alt={field.icon} />
@@ -168,7 +165,10 @@ const Careers= () => {
 						<Box sx={{ width: '100%', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
 							<Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
 								{field.contents.map((content, j) => (
-									<Box key={j} sx={{ p: '10px 5px', lineHeight: '150%', borderBottom: '1px solid var(--color-white)' }}>{content}</Box>
+									<Box key={j} sx={{ p: '10px 5px', lineHeight: '150%', borderBottom: '1px solid var(--color-white)',
+										[theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>
+										{content}
+									</Box>
 								))}
 							</Box>
 						</Box>
@@ -178,7 +178,7 @@ const Careers= () => {
 
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ width: '80%', m: 'auto',	[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-					<Box sx={{ fontSize: '2rem', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>Employee Welfare</Box>
+					<Box sx={{ fontSize: '2.5rem', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>Employee Welfare</Box>
 				</Box>
 				<Box sx={{ width: '100%', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
 					<Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
@@ -186,13 +186,13 @@ const Careers= () => {
 							<Box key={i} sx={{ width: '100%', p: '20px 5px', lineHeight: '150%', borderBottom: '1px solid var(--color-white)', display: 'flex' }}>
 								<Box sx={{ flexBasis: '30%', pr: '10px', borderRight: '1px solid var(--color-white)',
 									display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-									[theme.breakpoints.down('sm')] : { pr: '3px' } }}>
+									[theme.breakpoints.down('sm')] : { pr: '3px', fontSize: '0.8rem' } }}>
 									<Box>{welfare.item}</Box>
-									<Image src={welfare.url} width={30} height={30} alt={welfare.item} />
+									<Image src={welfare.url} width={25} height={25} alt={welfare.item} />
 								</Box>
 								<Box sx={{ flexBasis: '70%', pl: '10px' }}>
 									{ welfare.contents.map((content, j) =>(
-										<Box key={j} sx={{ [theme.breakpoints.down('sm')] : { fontSize: '0.85rem' } }}>{content}</Box>
+										<Box key={j} sx={{ [theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>{content}</Box>
 									))}
 								</Box>
 							</Box>

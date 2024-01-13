@@ -1,22 +1,21 @@
 import mongoose from 'mongoose';
 
-// if ( !process.env.MONGODB_URL ) {
-//    throw new Error('Invalid environment variable: MONGODB_URL');
-// };
+const MONGODB_URL = process.env.MONGODB_URL;
 
-const connectDB = async (request, response, next) => {
-
-   if (mongoose.connections[0].readyState) { return next(); };
-
-   try {
-      const { connection } = await mongoose.connect(process.env.MONGODB_URL, {});
-      if ( connection.readyState === 1) { return Promise.resolve(true); };
-   } catch (error) {
-      throw new Error('could not connect to MongoDB ...');
-      // return Promise.reject(error);
+if (!MONGODB_URL) {
+   throw new Error('Invalid environment variable: MONGODB_URL');
    };
+
+const options = {};
+
+async function connectDB () {
+   if (mongoose.connection.readyState >= 1) {
+      return mongoose;
+   };
+
+   const db = await mongoose.connect(MONGODB_URL, options);
+
+   return db;
 };
 
 export default connectDB;
-
-

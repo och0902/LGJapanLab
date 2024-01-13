@@ -5,8 +5,8 @@ export const videos = [
 ];
 
 export const mediaList = [
-   { title: 'Champion LG Twins', url: 'https://youtu.be/H8nzf3BGbwE?si=7kZUTF9MUdKEbZXI', thumbnail: '/images/root/media/LGTwins.png' }, 
-   { title: 'LG SUPERSTART', url: 'https://youtu.be/DG8FYSMyEKM?si=fDpiZM64FnWyYbDc', thumbnail: '/images/root/media/SuperStart.png' },
+   { title: 'Champion LG Twins', url: 'https://youtu.be/H8nzf3BGbwE?si=7kZUTF9MUdKEbZXI', thumbnail: '/images/root/media/LGTwins.jpg' }, 
+   { title: 'LG SUPERSTART', url: 'https://youtu.be/DG8FYSMyEKM?si=fDpiZM64FnWyYbDc', thumbnail: '/images/root/media/SuperStart.jpg' },
    { title: 'LG OLED 10 Year', url: 'https://youtu.be/7FzMEtMG8hA?si=rqju8cRSgZeb89Kn', thumbnail: '/images/root/media/OLED10thAnniversary.jpg' },
    { title: 'CES 2023', url: 'https://youtu.be/yZfUtO_SpQM', thumbnail: '/images/root/media/CES2023.jpg' },
 ];

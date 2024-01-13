@@ -4,7 +4,7 @@ const nextConfig = {
    //    locales: [ 'en', 'ja' ],
    //    defaultLocale: 'ja',
    // },
-   // reactStrictMode: false,
+   reactStrictMode: false,
 }
 
 module.exports = nextConfig

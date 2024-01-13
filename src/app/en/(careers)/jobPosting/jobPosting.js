@@ -7,10 +7,27 @@ export const jobPostings = [
             id: '1',
             team: '',
             status: '',
-            recruitmentJob: '',
+            recruitmentJob: 'New Recruitment',
             desc: `We want the active participation of graduate of master's and doctoral programs whose major field fits the contents of our research and development.`,
-            location: '横浜',
-            details: [''],
+            location: 'Yokohama & Kyoto',
+            details: [
+               {
+                  item: 'Recruitment Job',
+                  contents: [`We want the active participation of graduate of master's and doctoral programs whose major field fits the contents of our research and development.`],
+               },
+               {
+                  item: 'Form of Employment',
+                  contents: ['Full-time employee of LG Japan Lab inc.'],
+               },
+               {
+                  item: 'Preference Conditions',
+                  contents: ['LG Japan Lab is actively promoting new graduate recruitment.'],
+               },
+               {
+                  item: 'Place of Work',
+                  contents: ['Yokohama R&D center & Kyoto R&D center'],
+               },
+            ],
          },
       ],
    },

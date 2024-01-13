@@ -14,7 +14,7 @@ const PageHero = ({ image, aspectRatio, title, color='var(--color-white)', messa
          <Box sx={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', px: '10%',
             [theme.breakpoints.down('md')] : { px: '25%' }}}>
             <Box sx={{ color }}>
-               <Box sx={{ fontSize: '4rem', textShadow: '5px 5px 5px var(--color-LGgray)',
+               <Box sx={{ fontSize: '4rem', fontWeight: 'var(--weight-bold)', textShadow: '5px 5px 5px var(--color-LGgray)',
                   [theme.breakpoints.down('lg')] : { fontSize: '3.5rem' },
                   [theme.breakpoints.down('md')] : { fontSize: '3rem' },
                   [theme.breakpoints.down('sm')] : { fontSize: '2.5rem' } }}>{title}</Box>

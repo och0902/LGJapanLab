@@ -23,28 +23,28 @@ const Careers= () => {
 					display: 'flex', alignItems: 'center', gap: '50px',
 					[theme.breakpoints.down('md')] : { height: '30%', px: '10px', gap: '20px', }, [theme.breakpoints.down('sm')] : { height: '35%' } }}>
 					<Box sx={{ color: 'var(--color-black)' }} >
-						<Box sx={{ my: '10px', fontSize: '1.5rem', [theme.breakpoints.down('md')] : { my: '5px', fontSize: '1.2rem'} }}>
+						<Box sx={{ my: '10px', fontSize: '1.5rem', [theme.breakpoints.down('md')] : { my: '5px', fontSize: '0.8rem'} }}>
 							現在、5つの求人情報が公開されています。
 						</Box>
-						<Box sx={{ my: '10px', [theme.breakpoints.down('md')] : { my: '5px' } }}>
+						<Box sx={{ my: '10px', [theme.breakpoints.down('md')] : { my: '5px', fontSize: '0.8rem' } }}>
 							経歴採用4件を含む
 						</Box>
 					</Box>
-					<Link href='/jobPosting' className={styles.buttonRed}>募集 分野</Link>
+					<Link href='/jobPosting' className={styles.buttonRed}>募集職種</Link>
 				</Box>
 			</Box>
 
 			<Box sx={{ width: '80%', m: 'auto', fontSize: '1.25rem', textAlign: 'center', color: 'var(--color-black)', 
 				[theme.breakpoints.down('md')] : { width: '100%' }, [theme.breakpoints.down(450)] : { fontSize: '1rem'} }}>
-				<Box>LG Japan Labは明確で明るい未来を共に作ってくれる</Box>
-				<Box sx={{ fontSize: '2rem', color: 'var(--color-LGred)',
+				<Box>LG Japan Labでは、自律的でクリエイティブな人材を募集いたします。</Box>
+				<Box sx={{ fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', color: 'var(--color-LGred)',
 					[theme.breakpoints.down('sm')] : { fontSize: '1.75rem' }, [theme.breakpoints.down(450)] : { fontSize: '1.25rem'}  }}>
-					<i>自律的で創意的な人材を募集する。</i>
+					<i>LGと共に明るい未来を創って行きませんか。</i>
 				</Box>
 			</Box>
 
 			<Box sx={{ width: '100%' }}>
-				<Box sx={{ width: '80%', m: 'auto', fontSize: '2rem', 
+				<Box sx={{ width: '80%', m: 'auto', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', 
 					[theme.breakpoints.down('md')]: { fontSize: '1.75rem' },
 					[theme.breakpoints.down('lg')]: { width: '100%' } }}>私たちは</Box>
 				<Box sx={{ width: '100%', py: '10px', display: 'flex', flexDirection: 'column', gap: '20px', backgroundColor: 'var(--color-LGgray-light)' }}>
@@ -52,8 +52,8 @@ const Careers= () => {
 						<Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', color: 'var(--color-black)' }}>
 							{ weAre.map((policy, i) => (
 								<Box key={i}>
-									<Box sx={{ fontSize: '1.5rem' }}>{policy.policy}</Box>
-									<Box>{policy.desc}</Box>
+									<Box sx={{ fontSize: '1.5rem', fontWeight: 'var(--weight-bold)' }}>{policy.policy}</Box>
+									<Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>{policy.desc}</Box>
 								</Box>
 							))}
 						</Box>
@@ -63,7 +63,7 @@ const Careers= () => {
 						<Box sx={{ fontSize: '1.25rem', m: '20px' }}>研究開発業務について</Box>
 						<Box sx={{ mb: '20px', px: '10px' }} >
 							{ aboutRND.map((about, i) => (
-								<Box key={i}>{about}</Box>
+								<Box key={i} sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>{about}</Box>
 							))}
 						</Box>
 					</Box>  		
@@ -87,7 +87,9 @@ const Careers= () => {
 
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ width: '80%', m: 'auto',	[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-					<Box sx={{ fontSize: '2rem', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>成長経路</Box>
+					<Box sx={{ fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>
+						成長ビジョン
+					</Box>
 				</Box>
 
 				<Box sx={{ width: '80%', m: 'auto', mt: '10px', py: '10px', display: 'flex', flexDirection: 'column', gap: '40px', color: 'var(--color-black)',
@@ -110,8 +112,10 @@ const Careers= () => {
 							</Box>
 						</Box>
 						<Box sx={{ flexBasis: '45%', width: '100%', p: '10px', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
-							<Box sx={{ fontSize: '1.5rem', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>研究職</Box>
-							<Box>自分の能力に応じて、研究者から首席研究者へと成長します。</Box>
+							<Box sx={{ mb: '10px', fontSize: '1.5rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>研究職</Box>
+							<Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>
+								自身の経験、知識、能力、成果に応じて、研究者から首席研究者へと成長します。
+							</Box>
 						</Box>
 					</Box>
 					<Box sx={{ display: 'flex', alignItems: 'center', gap: '50px', 
@@ -132,8 +136,11 @@ const Careers= () => {
 							</Box>
 						</Box>
 						<Box sx={{ flexBasis: '45%', width: '100%', p: '10px', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
-							<Box sx={{ fontSize: '1.5rem', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>管理職</Box>
-							<Box>LG Japan Labでは、基本的にTeam (Project) Leaderが高い権限を持って人事・予算管理を行い、Lerdershipの能力を持ち、個人のビジョンに合致した人材がTeam (Project) Leaderに成長します。</Box>
+							<Box sx={{ mb: '10px', fontSize: '1.5rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('sm')]: { fontSize: '1.25rem' } }}>管理職</Box>
+							<Box sx={{ [theme.breakpoints.down('sm')]: { fontSize: '0.8rem' } }}>
+								基本的にTeam (Project) Leaderが権限を持って人材マネジメントと進捗管理を行います。
+								リーダーシップがあり、個人のビジョンを達成した人材がTeam (Project) Leaderへと成長します。
+							</Box>
 						</Box>
 					</Box>
 				</Box>
@@ -142,8 +149,10 @@ const Careers= () => {
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ width: '80%', m: 'auto',	display: 'flex', justifyContent: 'space-between', alignItems: 'center',
 					[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-					<Box sx={{ fontSize: '2rem', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>採用分野</Box>
-					<Link href='/jobPosting' className={styles.buttonRed}>募集 分野</Link>
+					<Box sx={{ fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('sm')]: { fontSize: '1.75rem' } }}>
+						募集職種
+					</Box>
+					<Link href='/jobPosting' className={styles.buttonRed}>募集職種</Link>
 				</Box>
 
 				{recruitmentFields.map((field, i) => (
@@ -151,7 +160,8 @@ const Careers= () => {
 						<Box sx={{ width: '80%', m: 'auto', display: 'flex', alignItems: 'center', gap: '20px',
 							borderBottom: '1px solid var(--color-LGred)',
 							[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-							<Box sx={{ mt: '5px', fontSize: '1.5rem', color: 'var(--color-LGred)' }}>
+							<Box sx={{ mt: '5px', fontSize: '1.5rem', fontWeight: 'var(--weight-bold)', color: 'var(--color-LGred)',
+								[theme.breakpoints.down('sm')] : { fontSize: '1.2rem' } }}>
 								{field.researchArea}
 							</Box>
 							<Image src={field.url} width={30} height={30} alt={field.icon} />
@@ -159,7 +169,10 @@ const Careers= () => {
 						<Box sx={{ width: '100%', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
 							<Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
 								{field.contents.map((content, j) => (
-									<Box key={j} sx={{ p: '10px 5px', lineHeight: '150%', borderBottom: '1px solid var(--color-white)' }}>{content}</Box>
+									<Box key={j} sx={{ p: '10px 5px', lineHeight: '150%', borderBottom: '1px solid var(--color-white)',
+										[theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>
+										{content}
+									</Box>
 								))}
 							</Box>
 						</Box>
@@ -169,7 +182,7 @@ const Careers= () => {
 
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ width: '80%', m: 'auto',	[theme.breakpoints.down('lg')]: { width: '100%' } }}>
-					<Box sx={{ fontSize: '2rem', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>福利厚生</Box>
+					<Box sx={{ fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>福利厚生</Box>
 				</Box>
 				<Box sx={{ width: '100%', backgroundColor: 'var(--color-LGgray-light)', color: 'var(--color-black)' }}>
 					<Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
@@ -177,13 +190,13 @@ const Careers= () => {
 							<Box key={i} sx={{ width: '100%', p: '20px 5px', lineHeight: '150%', borderBottom: '1px solid var(--color-white)', display: 'flex' }}>
 								<Box sx={{ flexBasis: '30%', pr: '10px', borderRight: '1px solid var(--color-white)',
 									display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-									[theme.breakpoints.down('sm')] : { pr: '3px' } }}>
+									[theme.breakpoints.down('sm')] : { pr: '3px', fontSize: '0.8rem' } }}>
 									<Box>{welfare.item}</Box>
-									<Image src={welfare.url} width={30} height={30} alt={welfare.item} />
+									<Image src={welfare.url} width={25} height={25} alt={welfare.item} />
 								</Box>
 								<Box sx={{ flexBasis: '70%', pl: '10px' }}>
 									{ welfare.contents.map((content, j) =>(
-										<Box key={j} sx={{ [theme.breakpoints.down('sm')] : { fontSize: '0.85rem' } }}>{content}</Box>
+										<Box key={j} sx={{ [theme.breakpoints.down('sm')] : { fontSize: '0.8rem' } }}>{content}</Box>
 									))}
 								</Box>
 							</Box>

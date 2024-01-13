@@ -1,7 +1,7 @@
 const Affilated = [
    {  
       fields: '持株会社',
-      icon:  '/images/lg/affiliated/holdings.png',
+      icon:  '/images/lg/affiliated/holdings.jpg',
       companies: [
          {
             name: 'LG Corp.',
@@ -9,9 +9,9 @@ const Affilated = [
                企業レベルで株式投資ポートフォリオを管理し、効率的に子会社に資源を配分する。`,
             url: 'https://www.lgcorp.com/',
             videoclips: [
-               { title: '', url: 'https://youtu.be/KmlYYOACSxo?si=hkz9ZmaBU_a3yj-i', thumbnail: '/images/lg/affiliated/lg/thumb1.png' },
-               { title: '', url: 'https://youtu.be/BldDHwntGiQ?si=3Q9LDTt_WQEYHco2', thumbnail: '/images/lg/affiliated/lg/thumb2.png' },
-               { title: 'LG Arts Center', url: 'https://youtu.be/Z8pLPJDRY5Q?si=gE4NToYOJZaWktg0', thumbnail: '/images/lg/affiliated/lg/thumb3.png' },
+               { title: '', url: 'https://youtu.be/KmlYYOACSxo?si=hkz9ZmaBU_a3yj-i', thumbnail: '/images/lg/affiliated/lg/thumb1.jpg' },
+               { title: '', url: 'https://youtu.be/BldDHwntGiQ?si=3Q9LDTt_WQEYHco2', thumbnail: '/images/lg/affiliated/lg/thumb2.jpg' },
+               { title: 'LG Arts Center', url: 'https://youtu.be/Z8pLPJDRY5Q?si=gE4NToYOJZaWktg0', thumbnail: '/images/lg/affiliated/lg/thumb3.jpg' },
                { title: 'Hwadamsup', url: 'https://youtu.be/idqkqhtSHgo?si=_TEo7tc5VX4qXBPI', thumbnail: '/images/lg/affiliated/lg/thumb4.jpg' },
             ],
          },
@@ -43,7 +43,7 @@ const Affilated = [
    },
    {
       fields: '電子系列',
-      icon:  '/images/lg/affiliated/electrons.png',
+      icon:  '/images/lg/affiliated/electrons.jpg',
       companies: [
          {
             name: 'LG Electronics',
@@ -51,9 +51,9 @@ const Affilated = [
                LG Electronicsは4つの事業部門で構成されています: H&A（ホームアプライアンスおよびエアソリューション）、HE（ホームエンターテイメント）、VS（車両コンポーネントソリューション）、BS（ビジネスソリューション）。`,
             url: 'https://www.lg.com/global',
             videoclips: [
-               { title: '', url: 'https://youtu.be/bFJbaLzYcLg?si=ottC6fbAyLCd2Puh', thumbnail: '/images/lg/affiliated/lge/thumb1.png' },
-               { title: '', url: 'https://youtu.be/Ml5_tNA0KV4?si=gN6TTFUc8P81QP1I', thumbnail: '/images/lg/affiliated/lge/thumb2.png' },   
-               { title: 'A Thousand Colors', url: 'https://youtu.be/e4Zd7nzYN3Q?si=VswljYrZh9sQGn5E', thumbnail: '/images/lg/affiliated/lge/thumb3.png' },
+               { title: '', url: 'https://youtu.be/bFJbaLzYcLg?si=ottC6fbAyLCd2Puh', thumbnail: '/images/lg/affiliated/lge/thumb1.jpg' },
+               { title: '', url: 'https://youtu.be/Ml5_tNA0KV4?si=gN6TTFUc8P81QP1I', thumbnail: '/images/lg/affiliated/lge/thumb2.jpg' },   
+               { title: 'A Thousand Colors', url: 'https://youtu.be/e4Zd7nzYN3Q?si=VswljYrZh9sQGn5E', thumbnail: '/images/lg/affiliated/lge/thumb3.jpg' },
                { title: '', url: 'https://youtu.be/2F8-oIV_E7s?si=BtgzFpAIDCWr8hfo', thumbnail: '/images/lg/affiliated/lge/thumb4.jpg' },
             ],
          },
@@ -63,7 +63,7 @@ const Affilated = [
                LG Displayが多様なテレビ·モバイル·IT·自動車·商用ディスプレー製品で市場を開拓している。 LG Displayはディスプレー業界のグローバルリーダーとして先端技術と安定的な生産能力、市場洞察力などでよく知られています。`,
             url: 'https://www.lgdisplay.com/eng',
             videoclips: [
-               { title: '', url: 'https://youtu.be/XijnLpGltdI?si=2TKlDCtMxaBcODV4', thumbnail: '/images/lg/affiliated/lgd/thumb1.png' },
+               { title: '', url: 'https://youtu.be/XijnLpGltdI?si=2TKlDCtMxaBcODV4', thumbnail: '/images/lg/affiliated/lgd/thumb1.jpg' },
                { title: '', url: 'https://youtu.be/5O_zm330b50?si=dSV0FxubU7bATfW-', thumbnail: '/images/lg/affiliated/lgd/thumb2.jpg' },
                { title: 'OLED Meta Technology', url: 'https://youtu.be/GzgrfSSYk04?si=FhPlQnU4l33Gsdm3', thumbnail: '/images/lg/affiliated/lgd/thumb3.jpg' },
                { title: 'CES 2023 LG Display', url: 'https://youtu.be/BjFYlBBbRYs?si=OjhAUSOqw5On7SaV', thumbnail: '/images/lg/affiliated/lgd/thumb4.jpg' },
@@ -78,14 +78,14 @@ const Affilated = [
                { title: '', url: 'https://youtu.be/7zWKvJOJCH0', thumbnail: '/images/lg/affiliated/lgit/thumb1.jpg' },
                { title: '', url: 'https://youtu.be/ZCC6MUFDFiM?si=JbQPai89sikqX5ZX', thumbnail: '/images/lg/affiliated/lgit/thumb2.jpg' },
                { title: '', url: 'https://youtu.be/4qlot6dhcs0?si=3yhLpviuxlV11xIy', thumbnail: '/images/lg/affiliated/lgit/thumb3.jpg' },
-               { title: 'CES 2023 LG Innotek', url: 'https://youtu.be/9UCPXIQO7Uc?si=FC7HBp6MCDsZWF9a', thumbnail: '/images/lg/affiliated/lgit/thumb4.png' },
+               { title: 'CES 2023 LG Innotek', url: 'https://youtu.be/9UCPXIQO7Uc?si=FC7HBp6MCDsZWF9a', thumbnail: '/images/lg/affiliated/lgit/thumb4.jpg' },
             ],
          },
       ],
    },
    {
       fields: '化学系列',
-      icon:  '/images/lg/affiliated/chemical.png',
+      icon:  '/images/lg/affiliated/chemical.jpg',
       companies: [
          {
             name: 'LG Chem',
@@ -122,7 +122,7 @@ const Affilated = [
    },
    {
       fields: '通信・サービス系列',
-      icon:  '/images/lg/affiliated/communication.png',
+      icon:  '/images/lg/affiliated/communication.jpg',
       companies: [
          {
             name: 'LG U+',

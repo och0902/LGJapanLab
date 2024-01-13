@@ -12,10 +12,10 @@ const JLHistoryMission = () => {
 
    return (
 		<Box className='pageContainer'>
-         <PageHero image='/images/lgjl/JLHistory.png' aspectRatio='1920/400' title='History' message1='of LG japan Lab'/>
+         <PageHero image='/images/lgjl/JLHistory.jpg' aspectRatio='1920/400' title='History' message1='of LG japan Lab'/>
 
          <Box sx={{ width: '100%', mt: 'calc( var(--gap-basic)/2 )' }}>
-            <Box sx={{ width: '80%', m: 'auto', mb: '2dvh', fontSize: '2rem', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
+            <Box sx={{ width: '80%', m: 'auto', mb: '2dvh', fontSize: '2.5rem', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
                LG Japan Lab History
             </Box>
             <Box sx={{ width: '80%', m: 'auto', mb: '5dvh', lineHeight: '150%', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
@@ -69,7 +69,7 @@ const JLHistoryMission = () => {
                      </tbody>
                   </table>
                </Box>
-               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: ' var(--color-bg-content)' }}>
+               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: 'var(--color-LGgray-light)' }}>
                   <Box sx={{ my: '15px', color: 'var(--color-LGred)', fontWeight: 'bolder' }}>2017.07 LG Japan Lab Inc.</Box>
                   <Box sx={{ my: '15px', fontSize: '1rem', color: 'var(--color-black)' }}>
                      Integrated corporation of five affiliated research institutes @Shinagawa Glass Cube
@@ -95,7 +95,7 @@ const JLHistoryMission = () => {
                   </table>
                </Box>
 
-               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: ' var(--color-bg-content)' }}>
+               <Box sx={{ width: '100%', p: '15px', textAlign: 'center', backgroundColor: 'var(--color-LGgray-light)' }}>
                   <Box sx={{ my: '15px', color: 'var(--color-LGred)', fontWeight: 'bolder' }}>2022.02 LG Japan Lab Inc.</Box>
                   <Box sx={{ my: '15px', fontSize: '1rem', color: 'var(--color-black)' }}>
                      Laboratory relocation @Yokohama Innovation Center

@@ -1,22 +1,39 @@
 export const jobPostings = [
    {
       type: 'new',
-      title: '新卒採用（大学生・大学院生対象）',
+      title: '新卒採用 (修士・博士課程修了者対象)',
       jobs: [
          {
             id: '1',
             team: '',
             status: '',
-            recruitmentJob: '',
-            desc: `専攻分野が研究開発の内容に合う修士·博士課程卒業生の積極的な参加をお願いします。`,
-            location: '横浜',
-            details: [''],
+            recruitmentJob: '新卒採用',
+            desc: `当社の研究開発内容と合致する専攻知識、経験をお持ちの修士・博士課程修了(見込み)の方のご応募をお待ちしております。`,
+            location: '横浜と京都',
+            details: [
+               {
+                  item: 'ポジション',
+                  contents: [`当社の研究開発内容と合致する専攻知識、経験をお持ちの修士・博士課程修了(見込み)の方のご応募をお待ちしております。`],
+               },
+               {
+                  item: '雇用形態',
+                  contents: ['LG Japan Lab inc. 正社員'],
+               },
+               {
+                  item: '優遇条件',
+                  contents: ['LG Japan Labは新卒採用を積極的に推進しています。'],
+               },
+               {
+                  item: '勤務地',
+                  contents: ['Yokohama R&D center & Kyoto R&D center'],
+               },
+            ],
          },
       ],
    },
    {
       type: 'career',
-      title: '経歴採用',
+      title: 'キャリア採用',
       jobs: [
          {
             id: '1',
@@ -27,7 +44,7 @@ export const jobPostings = [
             location: '横浜',
             details: [
                {
-                  item: '採用業務',
+                  item: 'ポジション',
                   contents: ['Clean technology(水素、CO2)の研究開発'],
                },
                {
@@ -67,7 +84,7 @@ export const jobPostings = [
             location: '横浜',
             details: [
                {
-                  item: '採用業務',
+                  item: 'ポジション',
                   contents: ['充電池技術の研究開発'],
                },
                {
@@ -105,7 +122,7 @@ export const jobPostings = [
             location: '京都',
             details: [
                {
-                  item: '採用業務',
+                  item: 'ポジション',
                   contents: ['Home Appliance技術研究開発'],
                },
                {
@@ -145,7 +162,7 @@ export const jobPostings = [
             location: '横浜',
             details: [
                {
-                  item: '採用業務',
+                  item: 'ポジション',
                   contents: ['企画管理'],
                },
                {

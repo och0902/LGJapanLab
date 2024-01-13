@@ -22,10 +22,10 @@ export const aboutRND = [
 ];
 
 export const videos = [
-   { url: '/videos/careers/2023LifesGoodCampaign.mp4', thumbnail: '/images/careers/careers1.png' },
-   { url: '/videos/careers/LGTechConference2023.mp4', thumbnail: '/images/careers/careers2.png' },
-   { url: '/videos/careers/2023LGSPPeople.mp4', thumbnail: '/images/careers/careers3.png' },
-   { url: '/videos/careers/LG75thAnniversary.mp4', thumbnail: '/images/careers/careers4.png' },
+   { url: '/videos/careers/2023LifesGoodCampaign.mp4', thumbnail: '/images/careers/careers1.jpg' },
+   { url: '/videos/careers/LGTechConference2023.mp4', thumbnail: '/images/careers/careers2.jpg' },
+   { url: '/videos/careers/2023LGSPPeople.mp4', thumbnail: '/images/careers/careers3.jpg' },
+   { url: '/videos/careers/LG75thAnniversary.mp4', thumbnail: '/images/careers/careers4.jpg' },
 ];
 
 export const specialties = [
@@ -35,7 +35,7 @@ export const specialties = [
 
 export const recruitmentFields = [
    { 
-      url: '/images/lgjl/mission&Challenges/electrons.png',
+      url: '/images/lgjl/mission&Challenges/electrons.jpg',
       researchArea: 'Product Technology Development',
       icon: 'electrons',
       contents: [ 
@@ -46,7 +46,7 @@ export const recruitmentFields = [
       ],
    },
    { 
-      url: '/images/lgjl/mission&Challenges/chemical.png',
+      url: '/images/lgjl/mission&Challenges/chemical.jpg',
       researchArea: 'Material Research & Development',
       icon: 'chemical Information',
       contents: [

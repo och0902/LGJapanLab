@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
-import { Box, Checkbox, FormControlLabel } from '@mui/material';
+import { Box } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import CircleIcon from '@mui/icons-material/Circle';
 import Link from 'next/link';
-import { toast } from 'react-hot-toast';
 import Image from 'next/image';
 
 const RecruitApply = () => {
@@ -28,11 +26,11 @@ const RecruitApply = () => {
 	return (
 		<Box className='pageContainer'>
 
-			<Box sx={{ width: '100%' }}>
-				<Box sx={{ width: '80%', m: 'auto', fontSize: '2rem',
+			<Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')] : { width: '100%' } }} >
+				<Box sx={{ fontSize: '2.5rem',
 					[theme.breakpoints.down('md')]: { fontSize: '1.75rem' },
 					[theme.breakpoints.down('lg')]: { width: '100%' } }}>Recruitment Process</Box>
-				<Box sx={{ width: '80%', m: 'auto', color: 'var(--color-black)', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
+				<Box sx={{ mt: '15px', color: 'var(--color-black)', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
 					<Box>
 						The entire process may change depending on the case of two to three interviews. 
 						The first interview is available online and there is no written test, but a web aptitude test is conducted before the final interview.
@@ -48,7 +46,7 @@ const RecruitApply = () => {
 									<Box>{process.process}</Box>
 									<Box sx={{ fontSize: '0.75rem' }}>{process.desc}</Box>
 								</Box>
-								{ i+1 !== recruitmentProcess.length && <PlayArrowIcon sx={{ m: '-5px', fontSize: '2.5rem', color: 'var(--color-LGred)' }} /> }
+								{ i+1 !== recruitmentProcess.length && <PlayArrowIcon sx={{ m: '-5px', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', color: 'var(--color-LGred)' }} /> }
 							</React.Fragment>
 						))}
 					</Box>
@@ -57,43 +55,42 @@ const RecruitApply = () => {
 
 			<Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')] : { width: '100%' } }} >
 
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-					<Box sx={{ flexBasis: '32%' }}>
-						<Link href={'/en/recruit/apply'} className={styles.linkBox} >
-							<Box sx={{ width: '50px', aspectRatio: '1/1', position: 'relative',
-								[theme.breakpoints.down('md')] : { width: '35px' } }}>
-								<Image src={'/images/careers/apply.png'} fill sizes='100%' alt='manual'  />
-							</Box>
-							<Box sx={{ fontSize: '1.2rem', [theme.breakpoints.down('md')] : { fontSize: '0.75rem'  } }}>
-								Recruitment Application
-							</Box>
-						</Link>
-					</Box>
-					<Box sx={{ flexBasis: '32%' }}>
-						<Link href={'/en/recruit/inquiry'} className={styles.linkBox} >
-							<Box sx={{ width: '50px', aspectRatio: '1/1', position: 'relative',
-								[theme.breakpoints.down('md')] : { width: '35px' } }}>
-								<Image src={'/images/careers/inquiry.png'} fill sizes='100%' alt='manual'  />
-							</Box>
-							<Box sx={{ fontSize: '1.2rem', [theme.breakpoints.down('md')] : { fontSize: '0.8rem'  } }}>
-								Application Inquiry
+				<Box sx={{ fontSize: '2.5rem', 
+					[theme.breakpoints.down('md')]: { fontSize: '1.75rem' },
+					[theme.breakpoints.down('lg')]: { width: '100%' } }}>Recruitment Application</Box>
+
+				<Box sx={{ mt: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+					<Box sx={{ flexBasis: '47%' }}>
+						<Link href={'/en/recruit/apply'} className={styles.link}>
+							<Box className={styles.linkBox1} 
+								sx={{ color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', border: '3px solid var(--color-LGred)' }}>
+								<Box sx={{ width: '50px', aspectRatio: '1/1', position: 'relative',
+									[theme.breakpoints.down('md')] : { width: '35px' } }}>
+									<Image src={'/images/careers/apply.png'} fill sizes='100%' alt='manual' />
+								</Box>
+								<Box sx={{ fontSize: '1.2rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('md')] : { fontSize: '0.75rem'  } }}>
+									Recruitment Application
+								</Box>
 							</Box>
 						</Link>
 					</Box>
-					<Box sx={{ flexBasis: '32%' }}>
-						<Link href={'#'} className={styles.linkBox} >
-							<Box sx={{ width: '50px', aspectRatio: '1/1', position: 'relative',
-								[theme.breakpoints.down('md')] : { width: '35px' } }}>
-								<Image src={'/images/careers/question.png'} fill sizes='100%' alt='manual'  />
-							</Box>
-							<Box sx={{ fontSize: '1.2rem', [theme.breakpoints.down('md')] : { fontSize: '0.8rem' } }}>
-								Question
+					<Box sx={{ flexBasis: '47%' }}>
+						<Link href={'/en/recruit/inquiry'} className={styles.link} >
+							<Box className={styles.linkBox2} 
+								sx={{ color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)', border: '3px solid var(--color-LGgray-light)' }}>
+								<Box sx={{ width: '50px', aspectRatio: '1/1', position: 'relative',
+									[theme.breakpoints.down('md')] : { width: '35px' } }}>
+									<Image src={'/images/careers/inquiry.png'} fill sizes='100%' alt='manual'  />
+								</Box>
+								<Box sx={{ fontSize: '1.2rem', fontWeight: 'var(--weight-bold)', [theme.breakpoints.down('md')] : { fontSize: '0.8rem'  } }}>
+									Application Inquiry
+								</Box>
 							</Box>
 						</Link>
 					</Box>
 				</Box>
 			</Box>
-
+			
 		</Box>
 	);
 };

@@ -16,11 +16,11 @@ const LGAffiliated = () => {
 
    return (
       <Box className='pageContainer'>
-         <PageHero image='/images/lg/affiliated/affiliated.png' aspectRatio='1920/400' title='Affiliated Companies' 
+         <PageHero image='/images/lg/affiliated/affiliated.jpg' aspectRatio='1920/400' title='Affiliated Companies' 
             message1='We create value for our customers' />
 
-         <Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)/2 )', [theme.breakpoints.down('md')] : { width: '100%', px: '5px' } }}>
-            <Box sx={{ fontSize: '2rem', mb: '1dvh' }}>LG Group</Box>
+         <Box sx={{ width: '80%', m: 'auto', [theme.breakpoints.down('lg')] : { width: '100%', px: '5px' } }}>
+            <Box sx={{ fontSize: '2.5rem', mb: '1dvh' }}>LG Group</Box>
             <Box sx={{ fontSize: '1rem', lineHeight: '150%' }}>
                LG Group&apos;s business portfolio covers three key areas: Electronics, Chemicals, and Telecommunications & Services, 
                with 71 affiliates, annual revenue of about 150 billion dollars, and 230,000 employees worldwide.

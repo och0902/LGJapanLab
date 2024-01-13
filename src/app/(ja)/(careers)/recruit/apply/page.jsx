@@ -5,10 +5,10 @@ import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 import { Box, Checkbox, FormControlLabel } from '@mui/material';
 import { useTheme } from '@emotion/react';
+import { jobPostings } from '../../jobPosting/jobPosting';
 import CircleIcon from '@mui/icons-material/Circle';
 import Modal from 'react-modal';
 import ModalPrivacyPolicy from '@/components/ja/ModalPrivacyPolicy/ModalPrivacyPolicy';
-import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 
 const RecruitApply = () => {
@@ -16,17 +16,19 @@ const RecruitApply = () => {
 	const theme = useTheme();
 	const router = useRouter();
 
+	// const [ applicantInfo, setApplicantInfo ] = useState({});
+
 	const [ name, setName ] = useState('');
-	const [ confirmName, setConfirmName ] = useState('');
+	const [ nameKana, setNameKana ] = useState('');
 	const [ email, setEmail ] = useState('');
 	const [ confirmEmail, setConfirmEmail ] = useState('');
 	const [ mobile, setMobile ] = useState('');
-	const [ position, setPosition ] = useState('');	
+	const [ recruitmentJob, setRecruitmentJob ] = useState('');	
 	const [ files, setFiles ] = useState([]);
 	const [ otherMatters, setOtherMatters ] = useState('');
 	const [ privacyCheck, setPrivacyCheck ] = useState(false);
 	const [ privacyModal, setPrivacyModal ] = useState(false);
-	const [ recruitmentStatus, setRecruitmentStatus ] = useState('申請書類が提出されました。'); 
+	const recruitmentStatus = '申請書類が提出されました。これから採用プロセスが行われる予定です。'; 
 
 	const customStyles = {
       content: {
@@ -39,24 +41,25 @@ const RecruitApply = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if ( privacyCheck !== true ) { toast('Please agree to the Privacy Policy');	return; }
-		if ( !name || !confirmName || !email || !confirmEmail || !mobile || !position ) { toast('Please enter required items'); return; }
-		// if ( !name || !confirmName || !email || !confirmEmail || !mobile || !position || !files ) { toast('Please enter required items'); return; }
-		if ( name !== confirmName ) { toast('Name does not match'); return; }
-		if ( email !== confirmEmail ) { toast('Email does not match'); return; }
-	
+		// if ( !name || !nameKana || !email || !confirmEmail || !mobile || !recruitmentJob ) { toast.error('必須項目を抜けずに入力してください。'); return; }
+		if ( !name || !nameKana || !email || !confirmEmail || !mobile || !recruitmentJob || !files ) { toast.error('必須項目を抜けずに入力してください。'); return; };
+		if ( email !== confirmEmail ) { toast.error('メールアドレスが一致しません。'); return; };
+		if ( privacyCheck !== true ) { toast.error('プライバシーポリシーに同意してください。'); return; };
+		
 		const formData = new FormData();
 
 		formData.set('name', name);
+		formData.set('nameKana', nameKana);
 		formData.set('email', email);
 		formData.set('mobile', mobile);
-		formData.set('position', position);
+		formData.set('recruitmentJob', recruitmentJob);
 		formData.set('otherMatters', otherMatters);
 		formData.set('privacyCheck', privacyCheck);
 		formData.set('recruitmentStatus', recruitmentStatus);
 
 		const fileLength = files.length;
       formData.append('fileLength', fileLength);
+		
       for( var i=0 ; i < fileLength ; i++ ) {
          formData.append(`files${i}`, files[i]);
       };
@@ -70,11 +73,22 @@ const RecruitApply = () => {
 					body: formData,
 					header: { 'Custom-Header': 'value', },
 				}).then ((response) => {
-					if( response.ok ) return response.json();
+					// console.log(response);
+					if( !response.ok ) {
+						console.log(response.message);
+						toast.error('データ処理中にエラーが発生しました。');
+					} else {
+						return response.json();
+					};
 				}).then ((result) => {
-					toast.success(result.message);
-					setIsSaving(false);
-					router.push('/recruit/apply/success');
+					if ( result?.message && result?.message === 'data saved & email sent successfully' ) {
+						toast.success('入力したデータは正常に処理されました。');
+						setIsSaving(false);
+						router.push('/recruit/apply/success');
+					} else {
+						toast.error('入力したデータが正常に処理されませんでした。もう一度試してください。');
+						setIsSaving(false);
+					};
 				});
 			} catch (error) {
 				toast.error(error.message);
@@ -88,103 +102,135 @@ const RecruitApply = () => {
 			<Box sx={{ width: '100%' }}>
 				
 				<form onSubmit={handleSubmit}>
-					<Box sx={{ width: '100%', py: '25px', fontSize: '2rem', textAlign: 'center', 
+					<Box sx={{ width: '100%', py: '25px', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', textAlign: 'center', 
 						color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)',
 						[theme.breakpoints.down('md')] : { mt: 'calc( var(--gap-basic)/3 )' } }}>
-						採用 申し込み
+						エントリーフォーム
 					</Box>
 
 					<Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)/2 )', 
 						[theme.breakpoints.down('md')] : { width: '100%' } }}> 
 						<Box sx={{ my: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-							<Box>
-								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> 表示された項目は必要です。
+							<Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>必須</Box>
+								<Box>表示された項目は必須です。</Box>
 							</Box>
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> お名前
+							<Box sx={{ flexBasis: '35%', textAlign: 'right', display: 'flex', justifyContent: 'right', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>必須</Box>
+								<Box>氏名</Box>
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='text' className={styles.input} onChange={(e) => setName(e.target.value)} value={name}/>
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<Box><CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> お名前</Box>
-								<Box>(確認用)</Box>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right', display: 'flex', justifyContent: 'right', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>
+									必須
+								</Box>
+								<Box>フリガナ</Box>
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
-								<input type='text' className={styles.input} onChange={(e) => setConfirmName(e.target.value)} value={confirmName} />
+							<Box sx={{ flexBasis: '65%' }}>
+								<input type='text' className={styles.input} onChange={(e) => setNameKana(e.target.value)} value={nameKana} />
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Eメールアドレス
+							<Box sx={{ flexBasis: '35%', textAlign: 'right', display: 'flex', justifyContent: 'right', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>
+									必須
+								</Box>
+								<Box>メールアドレス</Box>
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='email' className={styles.input} onChange={(e) => setEmail(e.target.value)} value={email} />
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<Box><CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Eメールアドレス</Box>
-								<Box>(確認用)</Box>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right', display: 'flex', justifyContent: 'right', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>
+									必須
+								</Box>
+								<Box><Box>メールアドレス</Box><Box>(確認用)</Box></Box>
+								
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='email' className={styles.input} onChange={(e) => setConfirmEmail(e.target.value)} value={confirmEmail} />
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> 携帯電話
+							<Box sx={{ flexBasis: '35%', textAlign: 'right', display: 'flex', justifyContent: 'right', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>
+									必須
+								</Box>
+								<Box>携帯電話</Box>
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
-								<input type='text' className={styles.input} onChange={(e) => setMobile(e.target.value)} value={mobile} />
+							<Box sx={{ flexBasis: '65%' }}> 
+								<input type='tel' className={styles.input} placeholder={`'-'なしの数字のみ`} 
+									onChange={(e) => setMobile(e.target.value)} value={mobile} />
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px', 
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Position
+							<Box sx={{ flexBasis: '35%', textAlign: 'right', display: 'flex', justifyContent: 'right', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>
+									必須
+								</Box>
+								<Box>ポジション</Box>
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
-								{/* <input type='text' className={styles.input} onChange={(e) => setPosition(e.target.value)} value={position} /> */}
+							<Box sx={{ flexBasis: '65%' }}>
 								<select className={styles.input} 
-									onChange={(e) => setPosition(e.target.value)} value={position} >
+									onChange={(e) => setRecruitmentJob(e.target.value)} value={recruitmentJob} >
 									<option value=''>選択</option>
-									<option value='LG Electonics'>LG Electonics</option>
-									<option value='LG Display'>LG Display</option>
-									<option value='LG Innotek'>LG Innotek</option>
-									<option value='LG Chem'>LG Chem</option>
-									<option value='LG Energy Solution'>LG Energy Solution</option>
-									<option value='etc.'>etc.</option>
+									{jobPostings.map((jobPosting, i) => (
+										jobPosting.jobs.map((job, j) => (
+											<option key={j} value={job.recruitmentJob}>{job.recruitmentJob}</option>
+										))
+									))}
 								</select>
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> 履歴書と職務経験
+							<Box sx={{ flexBasis: '35%', textAlign: 'right', display: 'flex', justifyContent: 'right', alignItems: 'center', gap: '10px' }}>
+								<Box sx={{ width: '35px', fontSize: '0.75rem', textAlign: 'center',
+									color: 'var(--color-white)', backgroundColor: 'var(--color-LGred)', borderRadius: '12px' }}>
+									必須
+								</Box>
+								<Box>履歴書および職務経歴書</Box>
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='file' multiple className={styles.input} onChange={(e) => setFiles(e.target.files)} />
 							</Box>						
 						</Box>
-						<Box sx={{ width: '50%', m: 'auto', my: '20px', [theme.breakpoints.down('sm')] : { width: '80%',} }}>
-							※ ファイルはMicrosoft Office、PDFで作成してください。ファイルサイズは合計30MB以内、添付ファイルは5つです。
+						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
+							[theme.breakpoints.down('lg')] : { gap: '10px' } }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}></Box>
+							<Box sx={{ flexBasis: '65%' }}>
+								<Box sx={{ width: '90%' }} >
+									<Box>※ ファイルはMicrosoft OfficeまたはPDF形式にし、ファイルサイズは合計100MB以内で作成いただきますようお願いいたします。</Box>
+								</Box>
+							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								その他の記載事項
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
+								<CircleIcon sx={{ fontSize: '0.6rem'  }} /> その他の記載事項
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<textarea className={styles.textarea} onChange={(e) => setOtherMatters(e.target.value)} value={otherMatters} />
 							</Box>						
 						</Box>
@@ -193,11 +239,14 @@ const RecruitApply = () => {
 					<Box sx={{ width: '100%', mt: 'calc( var(--gap-basic)/2 )', backgroundColor: 'var(--color-LGgray-light)',
 						[theme.breakpoints.down('md')] : { mt: 'calc( var(--gap-basic)/3 )' } }}>
 						<Box sx={{ width: '80%', m: 'auto', pt: '15px', pb: '5px', lineHeight: '150%', textAlign: 'center' }}>
-							<Box className={styles.privacypolicy} onClick={() => setPrivacyModal(true)}>
-								LG Japan Lab Inc.およびLGグループの個人情報の取り扱いについて、ご理解、同意いただけますか？
+							<Box>
+								<span className={styles.privacypolicy} onClick={() => setPrivacyModal(true)}>
+									LG Japan Lab Inc.およびLGグループの個人情報の取り扱いに
+								</span>
+								<span>同意いただける場合は以下の「同意する」をチェックしてください。</span>
 							</Box>
 							<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
-								<Box>同意する。</Box>
+								<Box>同意する </Box>
 								<FormControlLabel control={
 									<Checkbox sx={{ color: 'var(--color-LGred)', '&.Mui-checked': { color: 'var(--color-LGred)' } }} 
 										checked={privacyCheck} onChange={(e) => setPrivacyCheck(e.target.checked)} />
@@ -228,7 +277,7 @@ const RecruitApply = () => {
 								{isSaving ? 'Saving...' : 'Submit'}
 							</button>
 						</Box>
-						<Box>※ 回答に時間がかかる場合があります。 ご理解のほどよろしくお願いします。 10分以内の継続的な提出はできません。</Box>
+						<Box>※ 回答に時間がかかる場合があります。 ご理解のほどよろしくお願いします。</Box>
 					</Box>
 				</form>
 			</Box>

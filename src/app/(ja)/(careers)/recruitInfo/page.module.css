@@ -18,6 +18,13 @@
    transition: all 0.3s ease;
 }
 
+@media screen and ( max-width: 600px) {
+   .buttonRed {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+   }
+}
+
 .buttonRed:hover {
    text-decoration: none;
    transform: scale(1.05);

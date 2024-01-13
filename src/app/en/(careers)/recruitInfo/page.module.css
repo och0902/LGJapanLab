@@ -9,7 +9,20 @@
 }
 
 .buttonRed {
+   padding: 10px 30px;
+   background-color: var(--color-LGred);
+   color: var(--color-white);
+   font-weight: 600;
+   border-radius: 26px;
+   box-shadow: 3px 3px 3px var(--color-LGgray);
    transition: all 0.3s ease;
+}
+
+@media screen and ( max-width: 600px) {
+   .buttonRed {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+   }
 }
 
 .buttonRed:hover {

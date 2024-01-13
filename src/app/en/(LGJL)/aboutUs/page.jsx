@@ -15,10 +15,10 @@ const JLAboutUs= () => {
 
    return (
 		<Box className='pageContainer'>
-         <PageHero image='/images/lgjl/aboutUs.png' aspectRatio='1920/400' title='About Us' />
+         <PageHero image='/images/lgjl/aboutUs.jpg' aspectRatio='1920/400' title='About Us' />
          
          <Box sx={{ width: '80%', m: 'auto', mt: 'calc( var(--gap-basic)/2 )', [theme.breakpoints.down('md')] : { width: '100%', px: '10px' } }}>
-            <Box sx={{ fontSize: '2rem' }}>Information</Box>
+            <Box sx={{ fontSize: '2.5rem' }}>Information</Box>
             { companyInfos.map((info, i) => (
                <Box key={i} sx={{ p: '10px 5px', lineHeight: '150%', 
                   display: 'flex', alignItems: 'center', borderBottom: '1px solid var(--color-LGgray-light)' }}>
@@ -34,7 +34,7 @@ const JLAboutUs= () => {
 
          <Box sx={{ width: '100%' }}>
             <Box sx={{ width: '80%', m: 'auto', mb: '10px', [theme.breakpoints.down('md')] : { width: '100%', px: '10px' } }}>
-               <Box sx={{ fontSize: '2rem' }}>Location</Box>
+               <Box sx={{ fontSize: '2.5rem' }}>Location</Box>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '50px' }}>
                <Box sx={{ width: '100%', backgroundColor: 'var(--color-LGgray-light)', [theme.breakpoints.down('lg')] : { py: '20px' } }}>

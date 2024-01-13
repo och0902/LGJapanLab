@@ -2,30 +2,29 @@
 export const weAre = [
    { 
       policy: 'R&D focused', 
-      desc: 'LG Japan Labが集中的な研究開発活動を展開する。' 
+      desc: 'LG Japan Labは、研究開発に特化したR&D組織です。' 
    },
    { 
       policy: 'Best Experts', 
-      desc: '私たちは、その分野で最高の専門家に成長し発展するために、主要な知識と経験を活用します。' 
+      desc: 'あなたの知識や経験をベースに、関連分野におけるスペシャリストとして成長できるようにサポートします。' 
    },
    { 
       policy: 'Collaborating Globally', 
-      desc: '韓国、日本を含む世界の研究開発拠点とコミュニケーション·連携し、研究開発成果を創出しています。' 
+      desc: '日本、韓国を含む世界の研究開発拠点とコミュニケーション·連携し、研究開発成果を創出しています。' 
    }, 
 ];
 
 export const aboutRND = [
-   '研究開発課題は、系列会社の課題と実験室別の課題に大きく分けられる',
-   'Task は Project Baseで 進行され、評価されます。',
-   '内外（日本、韓国、グローバル）の研究者と緊密にコミュニケーションをとり、目標を達成していきます。',
-   '外部の大学、研究機関、関連会社とのオープンイノベーション活動を大切にしています。',
+   '研究開発の課題は、LG本社との連携ミッションとLG Japan Lab主体のミッションに大きく分けられ、プロジェクトベースで進行、評価されます。',
+   'そのため、国内外(日本、韓国、グローバル)の研究者と緊密にコミュニケーションをとりながら目標を達成して行きます。',
+   'また、当社は外部の大学、研究機関、関連企業とのオープンイノベーション活動を積極的に行っております。',
 ];
 
 export const videos = [
-   { url: '/videos/careers/2023LifesGoodCampaign.mp4', thumbnail: '/images/careers/careers1.png' },
-   { url: '/videos/careers/LGTechConference2023.mp4', thumbnail: '/images/careers/careers2.png' },
-   { url: '/videos/careers/2023LGSPPeople.mp4', thumbnail: '/images/careers/careers3.png' },
-   { url: '/videos/careers/LG75thAnniversary.mp4', thumbnail: '/images/careers/careers4.png' },
+   { url: '/videos/careers/2023LifesGoodCampaign.mp4', thumbnail: '/images/careers/careers1.jpg' },
+   { url: '/videos/careers/LGTechConference2023.mp4', thumbnail: '/images/careers/careers2.jpg' },
+   { url: '/videos/careers/2023LGSPPeople.mp4', thumbnail: '/images/careers/careers3.jpg' },
+   { url: '/videos/careers/LG75thAnniversary.mp4', thumbnail: '/images/careers/careers4.jpg' },
 ];
 
 export const specialties = [
@@ -35,7 +34,7 @@ export const specialties = [
 
 export const recruitmentFields = [
    { 
-      url: '/images/lgjl/mission&Challenges/electrons.png',
+      url: '/images/lgjl/mission&Challenges/electrons.jpg',
       researchArea: '製品技術開発',
       icon: 'electrons',
       contents: [ 
@@ -46,7 +45,7 @@ export const recruitmentFields = [
       ],
    },
    { 
-      url: '/images/lgjl/mission&Challenges/chemical.png',
+      url: '/images/lgjl/mission&Challenges/chemical.jpg',
       researchArea: '材料研究開発',
       icon: 'chemical Information',
       contents: [

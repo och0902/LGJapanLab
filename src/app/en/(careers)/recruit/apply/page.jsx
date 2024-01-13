@@ -5,10 +5,10 @@ import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 import { Box, Checkbox, FormControlLabel } from '@mui/material';
 import { useTheme } from '@emotion/react';
+import { jobPostings } from '../../jobPosting/jobPosting';
 import CircleIcon from '@mui/icons-material/Circle';
 import Modal from 'react-modal';
 import ModalPrivacyPolicy from '@/components/en/ModalPrivacyPolicy/ModalPrivacyPolicy';
-import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 
 const RecruitApply = () => {
@@ -16,21 +16,22 @@ const RecruitApply = () => {
 	const theme = useTheme();
 	const router = useRouter();
 
+	// const [ applicantInfo, setApplicantInfo ] = useState({});
+	
 	const [ name, setName ] = useState('');
-	const [ confirmName, setConfirmName ] = useState('');
 	const [ email, setEmail ] = useState('');
 	const [ confirmEmail, setConfirmEmail ] = useState('');
 	const [ mobile, setMobile ] = useState('');
-	const [ position, setPosition ] = useState('');	
+	const [ recruitmentJob, setRecruitmentJob ] = useState('');	
 	const [ files, setFiles ] = useState([]);
 	const [ otherMatters, setOtherMatters ] = useState('');
 	const [ privacyCheck, setPrivacyCheck ] = useState(false);
 	const [ privacyModal, setPrivacyModal ] = useState(false);
-	const [ recruitmentStatus, setRecruitmentStatus ] = useState('Application documents have been submitted'); 
+	const recruitmentStatus = 'The application form has been submitted. The recruitment process will be carried out from now on.'; 
 
 	const customStyles = {
       content: {
-         width: '86%', margin: 'auto', marginTop: 'var(--gap-basic)', backgroundColor: 'var(--color-LGgray-light)'
+         width: '86%', margin: 'auto', marginTop: 'var(--gap-basic)', color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)'
       }
    };
 
@@ -39,24 +40,24 @@ const RecruitApply = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if ( privacyCheck !== true ) { toast('Please agree to the Privacy Policy');	return; }
-		if ( !name || !confirmName || !email || !confirmEmail || !mobile || !position ) { toast('Please enter required items'); return; }
-		// if ( !name || !confirmName || !email || !confirmEmail || !mobile || !position || !files ) { toast('Please enter required items'); return; }
-		if ( name !== confirmName ) { toast('Name does not match'); return; }
-		if ( email !== confirmEmail ) { toast('Email does not match'); return; }
-	
+		// if ( !name || !email || !confirmEmail || !mobile || !recruitmentJob ) { toast.error('Please enter required items'); return;  }
+		if ( !name || !email || !confirmEmail || !mobile || !recruitmentJob || !files ) { toast.error('Please enter required items'); return; };
+		if ( email !== confirmEmail ) { toast.error('Name or Email do not match'); return; };
+		if ( privacyCheck !== true ) { toast.error('Please agree to the Privacy Policy'); return; };
+
 		const formData = new FormData();
 
 		formData.set('name', name);
 		formData.set('email', email);
 		formData.set('mobile', mobile);
-		formData.set('position', position);
+		formData.set('recruitmentJob', recruitmentJob);
 		formData.set('otherMatters', otherMatters);
 		formData.set('privacyCheck', privacyCheck);
 		formData.set('recruitmentStatus', recruitmentStatus);
 
 		const fileLength = files.length;
       formData.append('fileLength', fileLength);
+		
       for( var i=0 ; i < fileLength ; i++ ) {
          formData.append(`files${i}`, files[i]);
       };
@@ -64,22 +65,33 @@ const RecruitApply = () => {
 		if(!isSaving) {
 			setIsSaving(true);
 			try {
-				const url = '/en/api/careers';
+				const url = '/api/careers';
 				fetch(url, {
 					method: 'POST',
 					body: formData,
 					header: { 'Custom-Header': 'value', },
 				}).then ((response) => {
-					if( response.ok ) return response.json();
+					// console.log(response);
+					if( !response.ok ) {
+						console.log(response.message);
+						toast.error('An error occurred during data processing.');
+					} else {
+						return response.json();
+					};
 				}).then ((result) => {
-					toast.success(result.message);
-					setIsSaving(false);
-					router.push('/en/recruit/apply/success');
+					if ( result?.message && result?.message === 'data saved & email sent successfully' ) {
+						toast.success('The data you entered has been processed successfully.');
+						setIsSaving(false);
+						router.push('/en/recruit/apply/success');
+					} else {
+						toast.error('The data you entered was not processed properly. Please try again.');
+						setIsSaving(false);
+					};
 				});
 			} catch (error) {
 				toast.error(error.message);
 			};
-		};
+		}
 	};
 
 	return (
@@ -88,7 +100,7 @@ const RecruitApply = () => {
 			<Box sx={{ width: '100%' }}>
 				
 				<form onSubmit={handleSubmit}>
-					<Box sx={{ width: '100%', py: '25px', fontSize: '2rem', textAlign: 'center', 
+					<Box sx={{ width: '100%', py: '25px', fontSize: '2.5rem', fontWeight: 'var(--weight-bold)', textAlign: 'center', 
 						color: 'var(--color-black)', backgroundColor: 'var(--color-LGgray-light)',
 						[theme.breakpoints.down('md')] : { mt: 'calc( var(--gap-basic)/3 )' } }}>
 						Recruitment Application
@@ -103,88 +115,82 @@ const RecruitApply = () => {
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
 								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Name
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='text' className={styles.input} onChange={(e) => setName(e.target.value)} value={name}/>
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<Box><CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Name</Box>
-								<Box>(for Verification)</Box>
-							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
-								<input type='text' className={styles.input} onChange={(e) => setConfirmName(e.target.value)} value={confirmName} />
-							</Box>						
-						</Box>
-						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
-							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
 								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Email Address
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='email' className={styles.input} onChange={(e) => setEmail(e.target.value)} value={email} />
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
 								<Box><CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Email Address</Box>
 								<Box>(for Verification)</Box>
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='email' className={styles.input} onChange={(e) => setConfirmEmail(e.target.value)} value={confirmEmail} />
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
 								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Mobile Phone
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='text' className={styles.input} onChange={(e) => setMobile(e.target.value)} value={mobile} />
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px', 
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
-								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Position
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
+								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Recruitment Job
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
-								{/* <input type='text' className={styles.input} onChange={(e) => setPosition(e.target.value)} value={position} /> */}
+							<Box sx={{ flexBasis: '65%' }}>
 								<select className={styles.input} 
-									onChange={(e) => setPosition(e.target.value)} value={position} >
+									onChange={(e) => setRecruitmentJob(e.target.value)} value={recruitmentJob} >
 									<option value=''>Select</option>
-									<option value='LG Electonics'>LG Electonics</option>
-									<option value='LG Display'>LG Display</option>
-									<option value='LG Innotek'>LG Innotek</option>
-									<option value='LG Chem'>LG Chem</option>
-									<option value='LG Energy Solution'>LG Energy Solution</option>
-									<option value='etc.'>etc.</option>
+									{jobPostings.map((jobPosting, i) => (
+										jobPosting.jobs.map((job, j) => (
+											<option key={j} value={job.recruitmentJob}>{job.recruitmentJob}</option>
+										))
+									))}
 								</select>
 							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
 								<CircleIcon sx={{ fontSize: '0.6rem', color: 'var(--color-LGred)' }} /> Resume and Job Experience
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<input type='file' multiple className={styles.input} onChange={(e) => setFiles(e.target.files)} />
 							</Box>						
 						</Box>
-						<Box sx={{ width: '50%', m: 'auto', my: '20px', [theme.breakpoints.down('sm')] : { width: '80%',} }}>
-							※ Please make the file in Microsoft Office, PDF, and the file size should be within 30MB in total, and 5 attachments.
+						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
+							[theme.breakpoints.down('lg')] : { gap: '10px' } }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}></Box>
+							<Box sx={{ flexBasis: '65%' }}>
+								<Box sx={{ width: '90%' }} >
+									<Box>※ Please make a file in Microsoft Office or PDF format and make sure that the file size does not exceed 100MB in total.</Box>
+								</Box>
+							</Box>						
 						</Box>
 						<Box sx={{ my: '20px', display: 'flex', alignItems: 'center', gap: '30px',
 							[theme.breakpoints.down('md')] : { gap: '10px' } }}>
-							<Box sx={{ flexBasis: '30%', textAlign: 'right' }}>
+							<Box sx={{ flexBasis: '35%', textAlign: 'right' }}>
 								Other Matters to be Stated
 							</Box>
-							<Box sx={{ flexBasis: '70%' }}>
+							<Box sx={{ flexBasis: '65%' }}>
 								<textarea className={styles.textarea} onChange={(e) => setOtherMatters(e.target.value)} value={otherMatters} />
 							</Box>						
 						</Box>
@@ -231,7 +237,7 @@ const RecruitApply = () => {
 								{isSaving ? 'Saving...' : 'Submit'}
 							</button>
 						</Box>
-						<Box>※ It may take some time to respond. Thank you for your understanding. Continuous submissions are not available in 10 minutes.</Box>
+						<Box>※ The answer may take some time. We ask for your understanding.</Box>
 					</Box>
 				</form>
 			</Box>

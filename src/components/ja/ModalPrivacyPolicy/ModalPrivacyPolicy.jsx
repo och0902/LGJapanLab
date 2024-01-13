@@ -11,7 +11,7 @@ const ModalPrivacyPolicy = () => {
 
    return (
       <Box sx={{ width: '100%', lineHeight: '150%' }}>
-         <Box sx={{ width: '90%', m: 'auto',	[theme.breakpoints.down('lg')]: { width: '100%' } }}>
+         <Box sx={{ width: '90%', m: 'auto', mt: '100px', [theme.breakpoints.down('lg')]: { width: '100%' } }}>
             <Box sx={{ fontSize: '2rem', textAlign: 'center', [theme.breakpoints.down('md')]: { fontSize: '1.75rem' } }}>プライバシーポリシー</Box>
             <Box sx={{ mt: '50px', textAlign: 'right' }}>改定：2022年4月1日</Box>
             <Box sx={{ mt: '40px' }}>
