@@ -14,15 +14,14 @@ const handler = NextAuth ({
                const userData = await Admins.findOne({ email: credentials.email });
                const passwordMatched = await bcrypt.compare( credentials.password, userData.password );
                if ( !userData ) {
-                  return NextResponse.json({ message: 'user data not found ...', status: 500 })  
+                  throw new Error ('user data not found ...');  
                } else if ( !passwordMatched ) {
-                  return NextResponse.json({ message: 'wrong credentials ...', status: 500 });
+                  throw new Error ('wrong credentials ...');
                } else {
                   return userData;
                };
             } catch (error) {
-               console.log(error);
-               return NextResponse.json({ message: error.message, status: 500 }) ;
+               return NextResponse.json({ message: error.message, status: error.status || 500 }) ;
             };
          },
       }),
@@ -63,8 +62,8 @@ export async function PUT( request, { params } ) {
       await connectDB();
       await Admins.findByIdAndUpdate(id, { name: userData.name, email: userData.email, password: hashedNewPassword });      
    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: 500 }) ;   
-   }
-   return NextResponse.json({ message: 'password updated ...', status: 200 });
+      return NextResponse.json({ message: error.message, status: error.status || 500 }) ;   
+   } finally {
+      return NextResponse.json({ message: 'password updated ...', status: 200 });
+   };
 };

@@ -1,7 +1,0 @@
-.multicolortext {
-   background-image: linear-gradient(to top, #3E7E44, var(--color-LGgray-light) );
-   -webkit-background-clip: text;
-   -moz-background-clip: text;
-   background-clip: text;
-   color: transparent;
-}

@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+   --width-page: 1920px;
+
+   --height-nav: 100px;
+
+   --outermost-x: 5px;
+   --outermost-y: 10px;
+
+   --gap-base: 85px;
+
+   --font-base: 11px;
+
+   --weight-base: 500;
+   --weight-bold: 600;
+
+   --color-LGred: #A50034;
+   --color-LGgray: #6B6B6B;
+   --color-LGgray-light: #EBEBEB;
+}
+
+@media screen and (min-width: 600px) {
+   :root {
+      --gap-base: 100px;
+      --font-base: 13px;
+   }
+}
+
+@media screen and (min-width: 900px) {
+   :root {
+      --outermost-x: 10px;
+      --gap-base: 130px;
+      --font-base: 14px;
+   }
+}
+
+@media screen and (min-width: 1200px) {
+   :root {
+      --gap-base: 150px;
+      --font-base: 16px;
+   }
+}
+
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+   /* border: 1px solid red; */
+}
+
+html,
+body {
+   overflow-x: hidden;
+   font-size: var(--font-base);
+   font-weight: var(--weight-base);
+   color: var(--color-LGgray);
+   background-color: white;
+}
+
+ul {
+   color: inherit;
+   list-style: none;
+}
+
+a {
+   color: inherit;
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
+   text-underline-offset: 4px;
+}
+
+.globalContainer {
+   max-width: var(--width-page);
+   margin: auto;
+   margin-top: var(--height-nav);
+   padding: var(--outermost-y) var(--outermost-x);
+}
+
+.pageContainer {
+   width: 100%;
+   margin: auto;
+   margin-top: calc( var(--height-nav) / 2 - 5px );
+   margin-bottom: calc( var(--gap-base) * 1.3) ;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: var(--gap-base);
+}

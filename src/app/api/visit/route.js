@@ -1,59 +1,63 @@
 import connectDB from '@/libs/connectDB';
 import VisitInfos from '@/models/VisitInfos';
-import { transporter, visitMailOptions } from '@/config/nodemailer';
+import nodemailer from 'nodemailer';
+import { docSubmit, docReply } from './doc';
 import { NextResponse } from 'next/server';
 
 export async function POST( request ) { 
    
    const visitInfo = await request.json();
 
-   // console.log( visitInfo );
+   // try {
+   //    await connectDB();
+   //    await VisitInfos.create(visitInfo);
+   // } catch (error) {
+   //    // console.log(error);
+   //    return NextResponse.json({ message: error.message, status: error.status || 500 });
+   // };
 
-   try {
-      await connectDB();
-      await VisitInfos.create(visitInfo);
-   } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
-   };
+   const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { 
+         user: process.env.TRANSPORTER_USER, 
+         pass: process.env.TRANSPORTER_PASSWORD, 
+      },
+   });
 
-   let document = `<div><h2>Visit Application Data</h2>`;
-   document += Object.entries(visitInfo).reduce((docStr, [key, value]) => {
-      if ( key !== 'carryingIns') {
-         docStr += `<p>${key} : <strong>${value}</strong></p>`;
-         return docStr;
-      } else {
-         docStr += `<p>carryingIns</p>`;
-         visitInfo.carryingIns.map((carryingIn, i) => {
-            docStr += `<p style='padding-left: 10px;'>carryingIn Item #${i}</p>`;
-            Object.entries(carryingIn).map((desc, i) => {
-               docStr += `<p style='padding-left: 20px;'>${desc[0]} : <strong>${desc[1]}</strong></p>`;
-            });
-         });
-         return docStr;
-      };
-   },'');
-   document += `</div>`;
+   const docSubmitEmail = docSubmit( visitInfo );
 
    try {
       const response = await transporter.sendMail({
-         ...visitMailOptions,
-         subject: 'Visit Application Data has been submitted.',
+         from: visitInfo.email,
+         to: process.env.VISIT_RECEIVER_ADDRESS,
+         subject: 'Visit application data has been submitted.',
          text: `${visitInfo.name}'s Data`,
-         html: document,
+         html: docSubmitEmail,
       });
-
-      // console.log(response);
-
-      if( response.response.split(' ').includes('OK') ) {
-         return NextResponse.json({ message: 'data saved & email sent successfully', status: 200 });
-      } else {
-         console.log(response);
-         return NextResponse.json({ message: 'email sending failure', status: 501 });
+      if( !response.response.split(' ').includes('OK') ) {
+         throw new Error( 'email sending failure' );
       };
    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
+   };
+
+   const docReplyEmail = docReply();
+
+   try {
+      const response = await transporter.sendMail({
+         from: process.env.VISIT_RECEIVER_ADDRES,
+         to: visitInfo.email,
+         subject: 'We have received your visit application.',
+         text: `${visitInfo.name}'s Data`,
+         html: docReplyEmail,
+      });
+      if( response.response.split(' ').includes('OK') ) {
+         return NextResponse.json({ message: 'data processed successfully', status: 200 });
+      } else {
+         throw new Error( 'reply-email sending failure' );
+      };
+   } catch (error) {
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
    };
 };
 
@@ -67,17 +71,13 @@ export async function GET( request ) {
    try {
       await connectDB();
       const visitInfo = await VisitInfos.findOne({ email: visitor.email, mobile: visitor.mobile })
-
-      // console.log(visitInfo);
-
       if ( !visitInfo ) {
-         return NextResponse.json({ message: 'not found', status: 500 });     
+         throw new Error ( 'not found' );     
       } else {
          return NextResponse.json({ message: 'success', status: 200, ...visitInfo });
       };
    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
    };
 };
 
@@ -89,17 +89,13 @@ export async function PUT( request ) {
    try {
       await connectDB();
       const modifiedVisitInfo = await VisitInfos.findByIdAndUpdate( visitInfo._id, visitInfo )
-
-      // console.log(modifiedVisitInfo);
-
       if ( !modifiedVisitInfo ) {
-         return NextResponse.json({ message: 'not found', status: 500 });     
+         throw new Error ( 'not found' );     
       } else {
          return NextResponse.json({ message: 'success', status: 201, ...modifiedVisitInfo });
       };
    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
    };
 };
 
@@ -113,16 +109,12 @@ export async function DELETE( request ) {
    try {
       await connectDB();
       const visitInfo = await VisitInfos.findOneAndDelete({ email: visitor.email, mobile: visitor.mobile })
-
-      // console.log(visitInfo);
-      
       if( !visitInfo ) {
-         return NextResponse.json({ message:'not found', status: 500 });  
+         throw new Error ( 'not found' );  
       } else {
          return NextResponse.json( { message: 'success', status: 200, ...visitInfo } );
       };
    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
    };
 };

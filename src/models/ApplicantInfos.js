@@ -9,7 +9,6 @@ const applicantInfoSchema = new mongoose.Schema({
    files: { type: Array, required: [true,'file paths are required ...'] },
    otherMatters: { type: String },
    privacyCheck: { type: Boolean , default: true },
-   recruitmentStatus: { type: String },
    }, { timestamps: true }
 ); 
 

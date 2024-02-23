@@ -1,8 +1,8 @@
-import fs from 'fs';
 import { time } from '@/util/time';
 import connectDB from '@/libs/connectDB';
 import ApplicantInfos from '@/models/ApplicantInfos';
-import { transporter, careersMailOptions } from '@/config/nodemailer';
+import nodemailer from 'nodemailer';
+import { docSubmit, docReply } from './doc';
 import { NextResponse } from 'next/server';
 
 export async function POST( request ) { 
@@ -21,12 +21,6 @@ export async function POST( request ) {
    const timeStr = time();
    const directory = `./upload/applicantInfos/${timeStr}-${name}`;
 
-   if ( !fs.existsSync (directory) ) {
-      fs.mkdir(directory, (error) => {
-         if (error) console.error(error); 
-      });
-   };
-
    const fileLength = await bodyData.get('fileLength');
 
    let files=[];
@@ -35,57 +29,55 @@ export async function POST( request ) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
       files[i] = { filename: file.name, path: `${directory}/${file.name}`, size: file.size, lastModified: file.lastModified, lastModifiedDate: file.lastModifiedDate };
-      fs.writeFile(files[i].path, buffer, (error) => {
-         if (error) { console.log(error); }
-         else { console.log(`Recruitment Application Files uploaded successfully at ${files[i].path}`); };
-      });
    }; 
 
    const applicantData = { name, nameKana, email, mobile, recruitmentJob, files, otherMatters, privacyCheck, recruitmentStatus };
 
-   try {
-      await connectDB();
-      await ApplicantInfos.create(applicantData);
-   } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
-   };
+   const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { 
+         user: process.env.TRANSPORTER_USER, 
+         pass: process.env.TRANSPORTER_PASSWORD, 
+      },
+   });
 
-   let document = `<div><h2>Careers Application Data</h2>`;
-   document += Object.entries(applicantData).reduce((docStr, [key, value]) => {
-      if ( key !== 'files' ) {
-         docStr += `<p>${key}: <strong>${value}</strong></p>`
-      } else {
-         let fileName = ''; 
-         files.forEach((file, i) => { fileName += `<p>file#${i}: <strong>${file.filename}</strong>, path: <strong>${file.path}</strong></p>` });
-         docStr += fileName;
-      };
-      return docStr;
-   },'');
-   document += `</div>`;
+   const docSubmitEmail = docSubmit(applicantData);
 
    try {
-      careersMailOptions.from = applicantData.email;
       const response = await transporter.sendMail({
-         ...careersMailOptions,
-         subject: 'Careers Application Data has been submitted.',
-         text: `${name}'s Data`,
-         html: document,
+         from: applicantData.email,
+         to: process.env.CAREERS_RECEIVER_ADDRESS,
+         subject: 'Careers application data has been submitted.',
+         text: `${applicantData.name}'s Data`,
+         html: docSubmitEmail,
          attachments: files,
       });
-
-      // console.log(response);
-
-      if( response.response.split(' ').includes('OK') ) {
-         return NextResponse.json({ message: 'data saved & email sent successfully', status: 200 });
-      } else {
-         console.log(response);
-         return NextResponse.json({ message: 'email sending failure', status: 501 });
+      if( !response.response.split(' ').includes('OK') ) {
+         throw new Error ('submit-email sending failure');
       };
    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
    };
+
+   const docReplyEmail = docReply();
+
+   try {
+      const response = await transporter.sendMail({
+         from: process.env.CAREERS_RECEIVER_ADDRESS,
+         to: applicantData.email,
+         subject: 'We have received your careers application.',
+         text: `${applicantData.name}'s Data`,
+         html: docReplyEmail,
+      });
+      if( response.response.split(' ').includes('OK') ) {
+         return NextResponse.json({ message: 'data processed successfully', status: 200 });
+      } else {
+         throw new Error ('reply-email sending failure');
+      };
+   } catch (error) {
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
+   };
+
 };
 
 export async function GET( request ) {
@@ -98,12 +90,11 @@ export async function GET( request ) {
       await connectDB();
       const applicantInfo = await ApplicantInfos.findOne({ name: applicant.name, email: applicant.email })
       if ( !applicantInfo ) {
-         return NextResponse.json({ message: 'not found', status: 500 });
+         throw new Error ('not found');
       } else {
          return NextResponse.json({ message: 'success', status: 200, ...applicantInfo });
       };
    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: error.message, status: error.status });
+      return NextResponse.json({ message: error.message, status: error.status || 500 });
    };
 };
